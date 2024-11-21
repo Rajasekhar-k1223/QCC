@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .forgotPasswordPage {
+        display: none;
+        position: absolute;
+         z-index:99;
+        background: #fff;
+        margin: 2% 15%;
+        width: 70%;
+        top:10%;
+        height:50vh;
+        border-radius:1%;
+    }
+    
+    .passwordDive {
+    padding:2% 35%;
+    text-align:center;
+    }
+    .close {
+    width:3%;
+    float:left;
+    padding-top:2%;
+
+    }
+    .closebtn {
+   font-size:14px;
+   width:50%;
+   margin-top:10%;
+        }
+</style>
+<script type="text/javascript">
+    
+    $(window).resize(function () {
+               if ($(window).width() > 1300 && $(window).width() < 1500) {
+                $("#fivelog").css({ "right": "10rem" });
+            }
+            
+    })
+    if ($(window).width() > 1300 && $(window).width() < 1500) {
+                $("#fivelog").css({ "right": "10rem" });
+            }
+    history.pushState(null, null, location.href);
+    history.back();
+    history.forward();
+    window.onpopstate = function () { history.go(1); };
+    $(document).ready(function () {
+        // alert($(window).width());
+        
+        $(".forgotPasswordBtn").on("click", function () {
+            $(".forgotPasswordPage").show();
+            $(".body_blur").show();
+        });
+        $(".close, .closebtn").on("click", function () {
+
+            $(".forgotPasswordPage,.body_blur").hide();
+        })
+    })
+</script>
+<div class="row m-0">
+    <div class="col-md-7 col-lg-7 p-0 m-0">
+        <div>
+            <img src="~/Img/Amara-Raja.jpg" style="width:200px;" />
+        </div>
+        <div style="text-align:center;">
+            <img src="~/Img/Picture1.png" style="width:60%;" />
+        </div>
+
+    </div>
+    <div class="col-sm-12 col-md-5 col-lg-5 loginFormPage p-0 m-0">
+        <img src="~/Img/amaraja1.jpg" style="width:100%;position:absolute;height:100vh;" />
+        <img src="~/Img/amaraja.png" style="width:100px;position:absolute;right:13.5rem;" id="fivelog"/>
+        <div ng-controller="HomeController" class="loginFormPageForm">
+            <div class="form">
+                @*<div class="thumbnail"><img src="~/Img/amr1.jpg" style="border-radius:15%;" /></div>*@
+                <div class="login-form">
+                    @*<span>EMAIL:    </span>*@<input type="text" ng-model="user.empCode" placeholder="User Id" class="form-control" />
+                    @*<span>PASSWORD: </span>*@<input type="password" ng-model="user.password" placeholder="Password" class="form-control" id="passwordEnter"/>
+                    <span style="font-size: 14px;color: red;font-weight: bold;text-align: left;">{{LoginValidationmsg}}</span>
+                    <button value="{{btntext}}" ng-click="login()" style="font-weight:bold;" id="LoginClick">Login</button>
+                    @*<a class="text-uppercase font-weight-bold whtBtn btn btn-outline-secondary mt-3 mr-3" href="/Login/LoginRegister">Register</a>*@
+                    @*<a class="text-uppercase font-weight-bold whtBtn btn btn-success mt-3 mr-3" href="/Login/LoginRegister">Login</a>*@
+                    @*<button class="btn bg-success forgotPasswordBtn">Forgot Password</button>*@
+
+                </div>
+                <div class="btn btn-success float-right mt-3 font-weight-bold forgotPasswordBtn" style="font-size:12px;">Forgot Password</div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+<div ng-controller="HomeController">
+    <div class="forgotPasswordPage">
+        <h3 style="text-align:center;font-weight:bold;line-height:90px;width:97%;float:left;">Forgot Password</h3>
+        <div class="close">X</div>
+        <div style="clear:both"></div>
+        <div id="sc-password" class="passwordDive text-center">
+            <div class="sc-container">
+                <input type="number" placeholder="EmpCode" ng-model="EmpCode" class="form-control" style="height:40px;font-size:14px;"/>
+                <br />
+                <input type="submit" value="Reset Password" ng-click="ResetPassword()" ng-required="true" class="btn btn-info" style="font-size:14px;" />
+                <div class="text-center" style="margin:auto;margin-top:4%;"><span style="color:green;font-weight: bold; font-size:12px;">{{StatusMessage}}</span></div>
+            </div>
+            <button class="btn btn-outline-danger closebtn">Close</button>
+        </div>
+    </div>
+</div>
+<div class="body_blur"></div>
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/JsControllers/LoginController.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#passwordEnter').keypress(function (e) {
+ var key = e.which;
+ if(key == 13)  // the enter key code
+ {
+     $("#LoginClick").trigger("click");
+  }
+});
+    })
+</script>

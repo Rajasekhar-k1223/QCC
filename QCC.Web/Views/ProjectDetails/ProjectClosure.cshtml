@@ -1,0 +1,541 @@
+﻿@{
+    ViewBag.Title = "Project Clossure";
+}
+<script>
+    $(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image_upload_preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#inputFile").change(function () {
+            readURL(this);
+        });
+        $(".dropdown").hover(
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            },
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            });
+    });
+    function showDetails() {
+        var taleshowaa = '<div><h3 style="width:96%;text-align:center;float:left;">Team Details</h3><div style="font-weight:bold;font-size:16px;padding:0.5%;float:left;cursor:pointer;" onclick="javascript:return Close();" id="close">X</div><div style="clear:both"></div></div><table class="table"><thead></thead><tbody><tr><td>Facilitator</td><td>Rajasekhar</td><td>415268</td><td>CL & Lean</td><td>M05</td></tr><tr><td>Team Leader</td><td>Revathi</td><td>517583</td><td>CL & Lean</td><td>M04</td></tr><tr><td>Team Member</td><td>Sudha</td><td>785293</td><td>MNT</td><td>M04</td></tr><tr><td>Team Member</td><td>barghav</td><td>814298</td><td>Production</td><td>M05</td></tr><tr><td>Team Member</td><td>Sekhar</td><td>453298</td><td>Production</td><td>M05</td></tr><tr><td>Team Member</td><td>Lalitha</td><td>658392</td><td>QA</td><td>M04</td></tr></tbody></table><div style="text-align:center"><button class="btn btn-success" style="margin: 2% 10% 1% 37%;font-size:12px;font-weight:bold;float:left;">Approved</button><button class="btn btn-danger" style="font-size:12px;font-weight:bold;float:left;margin: 2% 2% 1% 1%;">Reject</button><textarea style="width: 190px; height: 53px;margin: 1% 10% 1% 1%;border:1px solid #000;border-radius:5px;padding-left:5px;" placeholder="Enter Remarks"></textarea></div>';
+        $(".body_blur").show();
+        $("#ApprovedView").show();
+
+    }
+    function Close() {
+        $(".showtableList,.body_blur").hide();
+    }
+</script>
+<style>.backgroundBlur {
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    background: rgb(0, 0, 0,0.8);
+    position:absolute;
+    z-index:4;
+    }</style>
+<svg id="ngloader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="        position: absolute;
+        margin: 13vw 45vw;
+        z-index: 5;
+
+        display: block;
+        shape-rendering: auto;" width="125px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+    <g transform="translate(80,50)">
+        <g transform="rotate(0)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="1">
+                <animateTransform attributeName="transform" type="scale" begin="-1.875s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.875s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(77.7163859753386,61.48050297095269)">
+        <g transform="rotate(22.5)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.9375">
+                <animateTransform attributeName="transform" type="scale" begin="-1.75s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.75s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(71.21320343559643,71.21320343559643)">
+        <g transform="rotate(45)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.875">
+                <animateTransform attributeName="transform" type="scale" begin="-1.625s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.625s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(61.4805029709527,77.7163859753386)">
+        <g transform="rotate(67.5)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.8125">
+                <animateTransform attributeName="transform" type="scale" begin="-1.5s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.5s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(50,80)">
+        <g transform="rotate(90)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.75">
+                <animateTransform attributeName="transform" type="scale" begin="-1.375s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.375s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(38.51949702904731,77.7163859753386)">
+        <g transform="rotate(112.5)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.6875">
+                <animateTransform attributeName="transform" type="scale" begin="-1.25s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.25s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(28.786796564403577,71.21320343559643)">
+        <g transform="rotate(135)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.625">
+                <animateTransform attributeName="transform" type="scale" begin="-1.125s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.125s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(22.283614024661397,61.4805029709527)">
+        <g transform="rotate(157.5)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.5625">
+                <animateTransform attributeName="transform" type="scale" begin="-1s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(20,50.00000000000001)">
+        <g transform="rotate(180)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.5">
+                <animateTransform attributeName="transform" type="scale" begin="-0.875s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.875s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(22.283614024661393,38.51949702904731)">
+        <g transform="rotate(202.49999999999997)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.4375">
+                <animateTransform attributeName="transform" type="scale" begin="-0.75s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.75s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(28.78679656440357,28.786796564403577)">
+        <g transform="rotate(225)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.375">
+                <animateTransform attributeName="transform" type="scale" begin="-0.625s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.625s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(38.51949702904729,22.283614024661404)">
+        <g transform="rotate(247.49999999999997)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.3125">
+                <animateTransform attributeName="transform" type="scale" begin="-0.5s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.5s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(49.99999999999999,20)">
+        <g transform="rotate(270)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.25">
+                <animateTransform attributeName="transform" type="scale" begin="-0.375s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.375s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(61.4805029709527,22.2836140246614)">
+        <g transform="rotate(292.50000000000006)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.1875">
+                <animateTransform attributeName="transform" type="scale" begin="-0.25s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.25s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(71.21320343559643,28.78679656440357)">
+        <g transform="rotate(315)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.125">
+                <animateTransform attributeName="transform" type="scale" begin="-0.125s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.125s"></animate>
+            </circle>
+        </g>
+    </g>
+    <g transform="translate(77.7163859753386,38.51949702904729)">
+        <g transform="rotate(337.49999999999994)">
+            <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.0625">
+                <animateTransform attributeName="transform" type="scale" begin="0s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="0s"></animate>
+            </circle>
+        </g>
+    </g>
+    <!-- [ldio] generated by https://loading.io/ -->
+</svg>
+<div class="backgroundBlur"></div>
+<div ng-controller="ProjectDetailsController">
+    <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+    <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+    <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+    <style>
+        .nav > li {
+            transition: all .7s;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+            padding: 0.2%;
+            color: #fff;
+        }
+    </style>
+    <header>
+        <nav class="navbar " style="padding:1%;padding-bottom:0px;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="padding:0px"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                </div>
+                <ul class="nav">
+
+
+                    <li class="Project_Selection_Sheet HeaderHide" style="width:260px;"><a href="/AReQCC/ProjectDetails/ProjectSelectionSheet">Project Selection & Closure<sup style="background:yellow;color:red;font-weight:bold;padding: 0.3rem;border-radius: 1rem;">{{ProjectSelection}}</sup></a></li>
+                    <li class="Pending_For_Approval HeaderHide" style="width:200px;"><a href="/AReQCC/ProjectDetails/PendingForApproval">Pending For Approval<sup style="background:yellow;color:red;font-weight:bold;padding: 0.3rem;border-radius: 1rem;">{{projectPendingforapproval}}</sup></a></li>
+                    <li class="activeL Project_Closure HeaderHide" style="background: rgba(0, 123, 194,1);"><a href="/AReQCC/ProjectDetails/ProjectClosure" class="" style="color:#fff;">Project Closure<sup style="background:yellow;color:red;font-weight:bold;padding: 0.3rem;border-radius: 1rem;">{{projectCloserCount}}</sup></a></li>
+                    @*<li class="Project_Rejected HeaderHide"><a href="/AReQCC/ProjectDetails/RejectedProjects">Rejected Projects</a></li>*@
+                    <li class="Home HeaderHide" style="width:100px"><a href="/AReQCC/Home/dashboard">Home</a></li>
+                </ul>
+                <div style="width: 20%;">
+                    <div class="userDetailsLeft">
+                        <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                        <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                    </div>
+                    <div class="userDetailsRight">
+                        <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+            </div>
+            <div class="form-group w-100">
+                <input type="text" ng-model="search" class="form-control" placeholder="Search" style="width:20%;padding: 0.375rem 1.75rem;font-size: 1.4rem;float:left" />
+                @*<input type="text" class="form-control" placeholder="Search for..." name="mySearch" ng-model="search">*@
+                <div style="float:right">
+                    View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)" id="viewby"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option><option>75</option><option>100</option></select> records at a time.
+                </div>
+            </div>
+            <table class="table table-striped table-bordered table-hover tabel-condensed">
+                <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                    <tr>
+                        <th>Id</th>
+                        <th>Company</th>
+                        <th>Business Unit</th>
+                        <th>Plant</th>
+                        <th>Team Name</th>
+                        <th>Team Strength</th>
+                        <th>Status</th>
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="Approved in ApprovedResponse  | filter: search| limitTo : pageSize : (currentPage - 1) * pageSize | orderBy:'id':true">
+                        <th scope="row">
+                            {{$index + 1}}
+                        </th>
+                        <td ng-hide="true">
+                            {{Approved.Id}}
+                        </td>
+                        <td>
+                            {{Approved.Company}}
+                        </td>
+                        <td>
+                            {{Approved.BusinessUnit}}
+                        </td>
+                        <td>
+                            {{Approved.Plant}}
+                        </td>
+                        <td>
+                            {{Approved.TeamName}}
+                            <img src="~/Img/info-icon.png" ng-click="toggleImageEdit(Approved)" sytle="width:16px;height:16px" />
+                        </td>
+                        <td ng-hide="true">
+                            {{Approved.Status}}
+                        </td>
+                        <td>
+
+                            <div ng-if="Approved.TeamStrength >= 2">
+                                {{Approved.TeamStrength}}
+                            </div>
+                            <div ng-if="Approved.TeamStrength < 2">
+                                0
+                            </div>
+                        </td>
+                        <td>
+                            {{Approved.StatusName}}
+                        </td>
+                        <td style="text-align:center">
+                            <span ng-click="toggleEdit(Approved)" class="glyphicon glyphicon-pencil" style="cursor:pointer;"></span>
+                        </td>
+                    </tr>
+
+                </tbody>
+                @*<tfoot>
+                        <tr>
+                            <td align="center" colspan="8">
+                                <div class="pull-right">
+                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages" style="margin-right:30px;float:left;"></pagination>
+                                    <a class="btn btn-primary" style="margin: 6.5% 0%;color:#fff;background-color: #337ab7;border-color: #2e6da4;">Page: {{pageIndex}} / {{numPages}}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>*@
+            </table>
+            <div class="w-100">
+                <div class="pull-right">
+                    <ul uib-pagination total-items="ApprovedCount" ng-model="currentPage" items-per-page="pageSize"></ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ProjectSelectionSheetView">
+        <div style="font-weight:bold;font-size:16px;padding:0.5%;float:right;cursor:pointer;" ng-click="Close();" id="close">X</div>
+        <div style="clear:both"></div>
+        <table class="table table-bordered">
+            <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                <tr>
+                    <th>SL.NO</th>
+                    <th>Title</th>
+                    <th>Objective</th>
+                    <th>Goal From</th>
+                    <th>Goal To</th>
+                    <th>Project Start Date</th>
+                    <th>Project End Date</th>
+                    <th>Expected Cost Saving</th>
+                    <th>Actual Goal</th>
+                    <th>Actual Project Start Date</th>
+                    <th>Actual Project End Date</th>
+                    <th>Actual Cost Saving</th>
+                    <th>Level1</th>
+                    <th>StatusName</th>
+                    <th>View</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="ProjectDetails in ProjectDetailsResponse" class="project_{{ProjectDetails.ProjectId}}">
+                    <th scope="row">
+                        {{$index + 1}} Project
+                    </th>
+                    <td ng-hide="true">
+                        {{ProjectDetails.ProjectId}}
+                    </td>
+                    <td ng-hide="true">
+                        {{ProjectDetails.TeamId}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.Title}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.Objective}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.Goal}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.GoalTo}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.ProjectStartDate}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.ProjectEndDate}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.ExpectedCostSaving}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.ActualGoal}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.ActualProjectStartDate}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.ActualProjectEndDate}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.ActualExpectedCostSaving}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.Level1}}
+                    </td>
+                    <td ng-hide="true">
+                        {{ProjectDetails.Status}}
+                    </td>
+                    <td>
+                        {{ProjectDetails.StatusName}}
+                    </td>
+                    <td style="text-align:center">
+                        <span ng-click="toggleEdit1(ProjectDetails)" class="glyphicon glyphicon-pencil aprovedviewBtn" style="cursor:pointer;"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="ApprovedView">
+        <h3 style="width:96%;text-align:center;float:left;margin-bottom:2%;margin-top:1%;font-weight:bold;">Team Details</h3>
+        <div style="font-weight:bold;font-size:16px;padding:0.5%;float:left;cursor:pointer;" ng-click="Close();" id="close">X</div>
+        <div style="clear:both"></div>
+        <div ng-hide="P1">Project1 : {{Project1}}</div>
+        <div ng-hide="P2">Project2 : {{Project2}}</div>
+        <div class="row">
+            <div class="col-sm-12 col-md-9 col-lg-9" style="padding-right:0px;">
+                <div class="row" style="margin:0px;">
+                    <div class="col-sm-12 col-md-4 col-lg-4 font-bold mb-2 pl-2">
+                        <div class="headcontent">Circle Name :</div><div class="headcontentval"> {{CircleName}}</div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 mb-2 pl-2">
+                        <div class="headcontent">Plant : </div><div class="headcontentval"> {{Plant}}</div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 mb-2 pl-2">
+                        <div class="headcontent">BusinessUnit : </div><div class="headcontentval"> {{BusinessUnit}}</div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 mb-2 p-1" ng-repeat="circle in CircleResponse" ng-if="[$index+1] != '7'">
+
+                        <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '1'">Facilitator</div>
+                        <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '2'">Team Leader</div>
+                        <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '3'">Team Member</div>
+                        <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '4'">Team Member</div>
+                        <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '5'">Team Member</div>
+                        <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '6'">Team Member</div>
+                        <div style="border:1px solid #000;width:100%;height:92px;padding:2%;border-radius: 3px;">
+                            <div style="        width: 65%;
+        float: left;
+        height: 75px;
+">
+                                <div class="mr-0 headerNAmeT" style="margin-top: 2px;">{{circle.EmpCode}}</div>
+                                <div class="mr-0 headerNAmeT" style=" white-space: nowrap;width: 12em;overflow: hidden;text-overflow: ellipsis;" title="{{circle.EmpName}}">{{circle.EmpName}}</div>
+                                <div class="mr-0 headerNAmeT"> <div style="float:left; white-space: nowrap;width: 9em;overflow: hidden;text-overflow: ellipsis;" title="{{circle.Department}}">{{circle.Department}}</div><div style="float:left;">{{circle.Grade}}</div><div style="clear:both;"></div></div>
+                            </div>
+                            @*<div style="width:40%;float:left;height:75px;">
+                                    <img src="{{circle.Image}}" style="width:100%;height:100%;" />
+                                </div>*@
+                            <div style="width:35%;float:left;height:75px;" ng-if="circle.Image ===''">
+                                <img src="~/Img/avatar.jpg" style="width:100%;height:100%;" />
+                            </div>
+                            <div style="width: 30%;float: left;height: 80px;margin-left: 0.9vw;" ng-if="circle.Image !==''">
+                                <img src="{{circle.Image}}" style="width:100%;height:100%;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3 col-lg-3" style="padding-left:4px;">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div style="border:1px dashed #000;width:100%;height:140px;padding:2%;border-radius: 3px;margin-bottom:10px;">
+                            <p class="mr-0 headerNAmeT" style="text-indent: 5px;font-size:14px;">Approval Level </p>
+                            <div style="width:100%;float:left;height:80px;">
+                                <div class="mr-0 headerNAmeT" style="text-indent:5px;">Level-1 :- Section Head</div>
+                                <div class="mr-0 headerNAmeT" style="text-indent:5px;">Level-2 :- CI – Head</div>
+                                <div class="mr-0 headerNAmeT" style="text-indent:5px;">Level-3 :- HOD </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}">Section Incharge</div>
+                        <div style="border:1px solid #000;width:100%;height:92px;padding:2%;border-radius: 3px;">
+                            <div style="width:60%;float:left;height:80px;">
+                                <div class="mr-0 headerNAmeT">{{SectionEmpCode}}</div>
+                                <div class="mr-0 headerNAmeT">{{SectionEmpName}}</div>
+                                <div class="mr-0 headerNAmeT"><div style="float:left; white-space: nowrap;width: 8em;overflow: hidden;text-overflow: ellipsis;" title="{{SectionDepartment}}">{{SectionDepartment}}</div><div style="float:left;">{{SectionGrade}}</div><div style="clear:both;"></div></div>
+                            </div>
+                            @*<div style="width:40%;float:left;height:80px;">
+                                    <img src="{{SectionImage}}" style="width:100%;height:100%;" />
+                                </div>*@
+                            <div style="width:35%;float:left;height:75px;" ng-if="SectionImage ===''">
+                                <img src="~/Img/avatar.jpg" style="width:100%;height:100%;" />
+                            </div>
+                            <div style="width:35%;float:left;height:75px;" ng-if="SectionImage !==''">
+                                <img src="{{SectionImage}}" style="width:100%;height:100%;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table border="1" align="center">
+            <tr>
+                <th colspan="2"> InternalConventions</th>
+                <th colspan="2">ChapterConventions</th>
+                <th colspan="2">NationalConventions</th>
+                <th colspan="2">InternationalConventions</th>
+            </tr>
+            <tr>
+                <th>Score</th>
+                <th>Awards</th>
+                <th>Score</th>
+                <th>Awards</th>
+                <th>Score</th>
+                <th>Awards</th>
+                <th>Score</th>
+                <th>Awards</th>
+            </tr>
+            <tr>
+                <td>{{internalConventionScoreAndAwards[0].InternalScore}}</td>
+                <td>{{internalConventionScoreAndAwards[0].InternalAward}}</td>
+                <td>{{chapterConventionsScoreAndAwards[0].ChapterScore}}</td>
+                <td>{{chapterConventionsScoreAndAwards[0].ChapterAward}}</td>
+                <td>{{nationalConventionScoreAndAwards[0].NationalScore}}</td>
+                <td>{{nationalConventionScoreAndAwards[0].NationalAward}}</td>
+                <td>{{internationalConventionScoreAndAwards[0].InterNationalScore}}</td>
+                <td>{{internationalConventionScoreAndAwards[0].InterNationalAward}}</td>
+            </tr>
+            <tr>
+                <td>{{internalConventionScoreAndAwards[1].InternalScore}}</td>
+                <td>{{internalConventionScoreAndAwards[1].InternalAward}}</td>
+                <td>{{chapterConventionsScoreAndAwards[1].ChapterScore}}</td>
+                <td>{{chapterConventionsScoreAndAwards[1].ChapterAward}}</td>
+                <td>{{nationalConventionScoreAndAwards[1].NationalScore}}</td>
+                <td>{{nationalConventionScoreAndAwards[1].NationalAward}}</td>
+                <td>{{internationalConventionScoreAndAwards[1].InterNationalScore}}</td>
+                <td>{{internationalConventionScoreAndAwards[1].InterNationalAward}}</td>
+            </tr>
+        </table>
+        <div class="col-sm-12 col-md-12 col-lg-12 text-center mt-2"><button class="btn btn-info" style="color:#fff;font-weight:bold;" ng-click="Close();">Close</button></div>
+    </div>
+    <div class="body_blur"></div>
+    <div class="showtableList">
+    </div>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#ngloader,.backgroundBlur").hide();
+
+            }, 3000);
+        });
+    </script>
+    <script src="~/Scripts/JsControllers/angular-1.5.8.js"></script>
+    <script src="~/Scripts/JsControllers/angular-animate.js"></script>
+    <script src="~/Scripts/JsControllers/angular-sanitize.js"></script>
+    <script src="~/Scripts/JsControllers/ui-bootstrap-tpls-2.1.3.js"></script>
+    <script src="~/Scripts/JsControllers/ProjectClosure.js"></script>
+    @*<script src="~/Scripts/dirPagination.js"></script>
+        <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>*@
+</div>

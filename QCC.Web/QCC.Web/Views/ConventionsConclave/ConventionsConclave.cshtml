@@ -1,0 +1,614 @@
+﻿<script>
+    $(document).ready(function () {
+        $(".conventionsPage").hide();
+        $("#Overal_conventions").show();
+        $(".Overal_conventions").css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px" });
+        $(".Internal_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.National_conventions,.Inter_National_conventions,.Overal_conventions").css({ "box-shadow": "none","font-weight":"400" });
+            $(".conventionsPage").hide();
+            $("#Internal_conventions").show();
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px","font-weight":"bold"});
+
+        })
+        $(".Chapter_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.National_conventions,.Inter_National_conventions").css({ "box-shadow": "none","font-weight":"400" });
+            $(".conventionsPage").hide();
+            $("#Chapter_conventions").show();
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px","font-weight":"bold" });
+            $(".Overal_conventions").css({ "box-shadow": "" });
+        })
+        $(".National_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.National_conventions,.Inter_National_conventions").css({ "box-shadow": "none","font-weight":"400" });
+            $(".conventionsPage").hide();
+            $("#National_conventions").show();
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px","font-weight":"bold" });
+            $(".Overal_conventions").css({ "box-shadow": "" });
+        })
+        $(".Inter_National_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.National_conventions,.Inter_National_conventions").css({ "box-shadow": "none","font-weight":"400" });
+            $(".conventionsPage").hide();
+            $("#Inter_National_conventions").show();
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px","font-weight":"bold" });
+            $(".Overal_conventions").css({ "box-shadow": "" });
+        })
+        $(".Overal_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.National_conventions,.Inter_National_conventions").css({ "box-shadow": "none","font-weight":"400"});
+            $(".conventionsPage").hide();
+            $("#Overal_conventions").show();
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px","font-weight":"bold" });
+
+        });
+        $(".Home > a").mouseenter(function () {
+           // alert("hello");
+            $(this).css({ "background": "rgba(0, 123, 194,1)" });
+        });
+        $(".Home > a").mouseleave(function () {
+           // alert("hello");
+            $(this).css({ "background": "rgba(0, 123, 194,0)" });
+        });
+    })
+</script>
+<style>
+    .nav > li > a {
+        padding: 0px;
+        color: #27a1b8;
+    }
+        .nav > li > a:hover {
+            background: rgba(0, 123, 194,1);
+        }
+
+</style>
+<div ng-controller="ConventionsConclaveController">
+    <header>
+        <nav class="navbar " style="padding:1%;padding-bottom:0px;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                </div>
+                <ul class="nav">
+
+                    <li class="Home HeaderHide"><a href="/QCC.Web/Home/dashboard" style="padding:0px;">Home</a></li>
+                </ul>
+                <div style="width: 20%;">
+                    <div class="userDetailsLeft">
+                        <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                        <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                    </div>
+                    <div class="userDetailsRight">
+                        <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+        <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+        <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+        <div style="min-height:450px;width:100%;">
+            <div id="Overal_conventions" class="conventionsPage text-center">
+                <h4> Overal Conventions</h4>
+                <button class="btn btn-info" ng-click="exportToExcel('#tblCustomers')" style="font-size: 14px;margin-bottom:5px;">
+                    <span class="glyphicon glyphicon-share"></span>
+                    Export to Excel
+                </button>
+                <button class="btn btn-info" ng-click="export()" style="font-size: 14px;margin-bottom:5px;"> <span class="glyphicon glyphicon-share"></span>PDF</button>
+                <a href="~/ConventionsConclave/ConventionalGraph"><img src="~/Img/chart_graph.png" style="width:40px;float:right;" /></a>
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;" id="tblCustomers">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>SL.NO</th>
+                            <th>Company</th>
+                            <th>BusinessUnit</th>
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>No.of Projects</th>
+                            <th>Cost Saving</th>
+                            <th>Team Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="OveralConventions in OveralConventionsResponse">
+                            <td>
+                                <input id="chkCustomer_{{OveralConventions.Id}}" type="checkbox" ng-model="OveralConventions.Selected" />
+                            </td>
+                            <th scope="row">
+                                {{OveralConventions.Id}}
+                            </th>
+                            <td>
+                                {{OveralConventions.Company}}
+                            </td>
+                            <td>
+                                {{OveralConventions.BusinessUnit}}
+                            </td>
+                            <td>
+                                {{OveralConventions.Plant}}
+                            </td>
+                            <td>
+                                {{OveralConventions.Department}}
+                            </td>
+                            <td>
+                                {{OveralConventions.QCName}}
+                            </td>
+                            <td>
+                                {{OveralConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{OveralConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{OveralConventions.TeamCount}}
+                            </td>
+                            <td>
+                                {{OveralConventions.NoOfProjects}}
+                            </td>
+                            <td>
+                                {{OveralConventions.CostSaving}}
+                            </td>
+                            <td>
+                                {{OveralConventions.StatusName}}
+                            </td>
+                            <td ng-hide="true">
+                                {{OveralConventions.TeamStatus}}
+                            </td>
+                            <td ng-hide="true">
+                                {{OveralConventions.Awards}}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td align="center" colspan="15">
+                                <div class="pull-right">
+                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages" style="margin-right:30px;float:left;"></pagination>
+                                    <a class="btn btn-primary" style="margin: 6.5% 0%;color:#fff;background-color: #337ab7;border-color: #2e6da4;">Page: {{pageIndex}} / {{numPages}}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <input type="button" value="Move To Internal" ng-click="SubmitToInternalConvention()" class=" btn btn-info mb-2" />
+            </div>
+            <div id="Internal_conventions" class="conventionsPage text-center">
+                <h4> Internal Conventions</h4>
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>SL.NO</th>
+                            <th>Company</th>
+                            <th>BusinessUnit</th>
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>No.of Projects</th>
+                            <th>Cost Saving</th>
+                            <th>Team Status</th>
+                            <th>Score</th>
+                            <th>Awards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="InternalConventions in InternalConventionsResponse">
+                            <td>
+                                <input id="chkCustomer_{{InternalConventions.Id}}" type="checkbox" ng-model="InternalConventions.Selected" />
+                            </td>
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            <td ng-hide="true">
+                                {{InternalConventions.Id}}
+                            </td>
+                            <td>
+                                {{InternalConventions.Company}}
+                            </td>
+                            <td>
+                                {{InternalConventions.BusinessUnit}}
+                            </td>
+                            <td>
+                                {{InternalConventions.Plant}}
+                            </td>
+                            <td>
+                                {{InternalConventions.Department}}
+                            </td>
+                            <td>
+                                {{InternalConventions.QCName}}
+                            </td>
+                            <td>
+                                {{InternalConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{InternalConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{InternalConventions.TeamCount}}
+                            </td>
+                            <td>
+                                {{InternalConventions.NoOfProjects}}
+                            </td>
+                            <td>
+                                {{InternalConventions.CostSaving}}
+                            </td>
+                            <td>
+                                {{InternalConventions.StatusName}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InternalConventions.TeamStatus}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InternalConventions.Awards}}
+                            </td>
+                            <td>
+                                <input type="number" style="width:40px" ng-model="InternalConventions.Score" min="0" />
+                            </td>
+                            <td>
+                                <select id="{{InternalConventions.Id}}" ng-model="selectedinternalawardsvalue" ng-change="getProductDetails(selectedinternalawardsvalue,[$index])" class="form-control float-left inputaddvalues" style="width:130px;">
+                                    <option value="">--select Awards--</option>
+                                    <option ng-repeat="sel in InternalConventionsAwardsResponse" ng-selected="selectedinternalawardsvalue == sel.Id" value="{{sel.Id}}">{{sel.Name}}</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td align="center" colspan="15">
+                                <div class="pull-right">
+                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages" style="margin-right:30px;float:left;"></pagination>
+                                    <a class="btn btn-primary" style="margin: 6.5% 0%;color:#fff;background-color: #337ab7;border-color: #2e6da4;">Page: {{pageIndex}} / {{numPages}}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <input type="button" value="Move To Chapter" ng-click="SubmitToChapterConvention()" class=" btn btn-info mb-2" style="margin-top: 4px;" />
+                <input type="button" value="Remove" ng-click="DeleteInternalConvention()" class=" btn btn-danger" />
+            </div>
+            <div id="Chapter_conventions" class="conventionsPage text-center">
+                <h4>  Chapter Conventions</h4>
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>SL.NO</th>
+                            <th>Company</th>
+                            <th>BusinessUnit</th>
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>No.of Projects</th>
+                            <th>Cost Saving</th>
+                            <th>Team Status</th>
+                            <th>Score</th>
+                            <th>Awards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ChapterConventions in ChapterConventionsResponse">
+                            <td>
+                                <input id="chkCustomer_{{ChapterConventions.Id}}" type="checkbox" ng-model="ChapterConventions.Selected" />
+                            </td>
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            <td ng-hide="true">
+                                {{ChapterConventions.Id}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.Company}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.BusinessUnit}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.Plant}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.Department}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.QCName}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.TeamCount}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.NoOfProjects}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.CostSaving}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.StatusName}}
+                            </td>
+                            <td ng-hide="true">
+                                {{ChapterConventions.TeamStatus}}
+                            </td>
+                            <td ng-hide="true">
+                                {{ChapterConventions.Awards}}
+                            </td>
+                            <td>
+                                <input type="number" style="width:40px" ng-model="ChapterConventions.Score" min="0" />
+                            </td>
+                            <td>
+                                <select id="{{ChapterConventions.Id}}" ng-model="selectedchapterawardsvalue" ng-change="getProductDetails1(selectedchapterawardsvalue,[$index])" class="form-control float-left inputaddvalues" style="width:130px;">
+                                    <option value="">--select Awards--</option>
+                                    <option ng-repeat="sel in ChapterConventionsAwardsResponse" ng-selected="selectedchapterawardsvalue == sel.Id" value="{{sel.Id}}">{{sel.Name}}</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td align="center" colspan="15">
+                                <div class="pull-right">
+                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages" style="margin-right:30px;float:left;"></pagination>
+                                    <a class="btn btn-primary" style="margin: 6.5% 0%;color:#fff;background-color: #337ab7;border-color: #2e6da4;">Page: {{pageIndex}} / {{numPages}}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <input type="button" value="Move To National" ng-click="SubmitToNationalConvention()" class=" btn btn-info" />
+                <input type="button" value="Remove" ng-click="DeleteChapterConvention()" class=" btn btn-danger" />
+            </div>
+            <div id="National_conventions" class="conventionsPage text-center">
+                <h4> National Conventions</h4>
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>SL.NO</th>
+                            <th>Company</th>
+                            <th>BusinessUnit</th>
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>No.of Projects</th>
+                            <th>Cost Saving</th>
+                            <th>Team Status</th>
+                            <th>Score</th>
+                            <th>Awards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="NationalConventions in NationalConventionsResponse">
+                            <td>
+                                <input id="chkCustomer_{{NationalConventions.Id}}" type="checkbox" ng-model="NationalConventions.Selected" />
+                            </td>
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            <td ng-hide="true">
+                                {{NationalConventions.Id}}
+                            </td>
+                            <td>
+                                {{NationalConventions.Company}}
+                            </td>
+                            <td>
+                                {{NationalConventions.BusinessUnit}}
+                            </td>
+                            <td>
+                                {{NationalConventions.Plant}}
+                            </td>
+                            <td>
+                                {{NationalConventions.Department}}
+                            </td>
+                            <td>
+                                {{NationalConventions.QCName}}
+                            </td>
+                            <td>
+                                {{NationalConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{NationalConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{NationalConventions.TeamCount}}
+                            </td>
+                            <td>
+                                {{NationalConventions.NoOfProjects}}
+                            </td>
+                            <td ng-hide="true">
+                                {{NationalConventions.TeamStatus}}
+                            </td>
+                            <td>
+                                {{NationalConventions.CostSaving}}
+                            </td>
+                            <td>
+                                {{NationalConventions.StatusName}}
+                            </td>
+
+                            <td ng-hide="true">
+                                {{NationalConventions.Awards}}
+                            </td>
+                            <td>
+                                <input type="number" style="width:40px" ng-model="NationalConventions.Score" min="0" />
+                            </td>
+                            <td>
+                                <select id="{{NationalConventions.Id}}" ng-model="selectednationalawardsvalue" ng-change="getProductDetails2(selectednationalawardsvalue,[$index])" class="form-control float-left inputaddvalues" style="width:130px;">
+                                    <option value="">--select Awards--</option>
+                                    <option ng-repeat="sel in NationalConventionsAwardsResponse" ng-selected="selectednationalawardsvalue == sel.Id" value="{{sel.Id}}">{{sel.Name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td align="center" colspan="15">
+                                <div class="pull-right">
+                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages" style="margin-right:30px;float:left;"></pagination>
+                                    <a class="btn btn-primary" style="margin: 6.5% 0%;color:#fff;background-color: #337ab7;border-color: #2e6da4;">Page: {{pageIndex}} / {{numPages}}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <input type="button" value="Move To International" ng-click="SubmitToInterNationalConvention()" class=" btn btn-info" />
+                <input type="button" value="Remove" ng-click="DeleteNationalConvention()" class=" btn btn-danger" />
+            </div>
+            <div id="Inter_National_conventions" class="conventionsPage text-center">
+                <h4>Intenational Conventions</h4>
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>SL.NO</th>
+                            <th>Company</th>
+                            <th>BusinessUnit</th>
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>No.of Projects</th>
+                            <th>Cost Saving</th>
+                            <th>Team Status</th>
+                            <th>Score</th>
+                            <th>Awards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="InterNationalConventions in InterNationalConventionsResponse">
+                            <td>
+                                <input id="chkCustomer_{{InterNationalConventions.Id}}" type="checkbox" ng-model="InterNationalConventions.Selected" />
+                            </td>
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            <td ng-hide="true">
+                                {{InterNationalConventions.Id}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.Company}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.BusinessUnit}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.Plant}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.Department}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.QCName}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.TeamCount}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.NoOfProjects}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.CostSaving}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.StatusName}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InterNationalConventions.TeamStatus}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InterNationalConventions.Awards}}
+                            </td>
+                            <td>
+                                <input type="number" style="width:40px" ng-model="InterNationalConventions.Score" min="0"/>
+                            </td>
+                            <td>
+                                <select id="{{InterNationalConventions.Id}}" ng-model="selectedinternationalawardsvalue" ng-change="getProductDetails3(selectedinternationalawardsvalue,[$index])" class="form-control float-left inputaddvalues" style="width:130px;">
+                                    <option value="">--select Awards--</option>
+                                    <option ng-repeat="sel in InterNationalConventionsAwardsResponse" ng-selected="selectedinternationalawardsvalue == sel.Id" value="{{sel.Id}}">{{sel.Name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td align="center" colspan="15">
+                                <div class="pull-right">
+                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages" style="margin-right:30px;float:left;"></pagination>
+                                    <a class="btn btn-primary" style="margin: 6.5% 0%;color:#fff;background-color: #337ab7;border-color: #2e6da4;">Page: {{pageIndex}} / {{numPages}}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <input type="button" value="Submit" ng-click="SubmitInterNationalConvention()" class=" btn btn-info" />
+                <input type="button" value="Remove" ng-click="DeleteInternationalConvention()" class=" btn btn-danger" />
+            </div>
+        </div>
+        <div style="margin-top:0%;margin-bottom:2%;">
+            <div class="BottomMenuIconsMain">
+                <button class="btn btn-success BottomMenuIcons Overal_conventions" ng-click="overalView()">Overal  conventions</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+            <div class="BottomMenuIconsMain">
+                <button class="btn btn-info BottomMenuIcons Internal_conventions" ng-click="InternalView()">Internal conventions</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+
+            <div class="BottomMenuIconsMain">
+                <button class="btn btn-danger BottomMenuIcons Chapter_conventions" ng-click="ChapterView()">Chapter conventions</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+            <div class="BottomMenuIconsMain">
+                <button class="btn btn-primary BottomMenuIcons National_conventions" ng-click="NationalView()">National conventions</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+            <div class="BottomMenuIconsMain">
+                <button class="btn btn-success BottomMenuIcons Inter_National_conventions" ng-click="InterNational()">International  conventions</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="~/Scripts/JsControllers/angular.js"></script>
+    <script src="~/Scripts/JsControllers/ConventionsConclaveController.js"></script>
+    <script src="~/Scripts/dirPagination.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</div>
+
+

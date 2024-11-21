@@ -1,0 +1,1087 @@
+﻿
+
+<script>
+    $(document).ready(function () {
+        $(".conventionsPage").hide();
+        $("#Overal_conventions").show();
+        $(".Overal_conventions").css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px", "font-weight": "bold" });
+        $(".Internal_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.ICQCC_conventions,.National_conventions,.Inter_National_conventions,.Overal_conventions").css({ "box-shadow": "none", "font-weight": "400" });
+            $(".conventionsPage").hide();
+            $("#Internal_conventions").show();
+            //$(".overalbtn").css({ "width": "20rem"});
+            //$(".internalbtn").css({ "width": "18rem" });
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px", "font-weight": "bold" });
+            $(".Overal_conventions").css({ "font-weight": "none" })
+
+        })
+        $(".Chapter_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.ICQCC_conventions,.National_conventions,.Inter_National_conventions").css({ "box-shadow": "none", "font-weight": "400" });
+            $(".conventionsPage").hide();
+            $("#Chapter_conventions").show();
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px", "font-weight": "bold" });
+            $(".overalbtn").css({ "font-weight": "none" });
+            //$(".internalbtn").css({ "width": "16rem" });
+            $(".Overal_conventions").css({ "box-shadow": "" });
+            $(".Overal_conventions").css({ "font-weight": "none" })
+        })
+        $(".National_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.ICQCC_conventions,.National_conventions,.Inter_National_conventions").css({ "box-shadow": "none", "font-weight": "400" });
+            $(".conventionsPage").hide();
+            $("#National_conventions").show();
+            //$(".overalbtn").css({ "width": "20rem" });
+            //$(".internalbtn").css({ "width": "16rem" });
+            $(".Overal_conventions").css({ "font-weight": "none" })
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px", "font-weight": "bold" });
+            $(".Overal_conventions").css({ "box-shadow": "" });
+        })
+        $(".ICQCC_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.ICQCC_conventions,.National_conventions,.Inter_National_conventions").css({ "box-shadow": "none", "font-weight": "400" });
+            $(".conventionsPage").hide();
+            $("#ICQCC_conventions").show();
+            //$(".overalbtn").css({ "width": "20rem" });
+            $(".Overal_conventions").css({ "font-weight": "none" })
+            //$(".internalbtn").css({ "width": "16rem" });
+            //$(".icqccbtn").css({ "width": "21rem" });
+            //$(".internationalbtn").css({"width":"19rem"})
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px", "font-weight": "bold" });
+            $(".Overal_conventions").css({ "box-shadow": "" });
+        })
+        $(".Inter_National_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.ICQCC_conventions,.National_conventions,.Inter_National_conventions").css({ "box-shadow": "none", "font-weight": "400" });
+            $(".conventionsPage").hide();
+            $("#Inter_National_conventions").show();
+            //   $(".overalbtn").css({ "width": "20rem" });
+
+            // $(".internalbtn").css({ "width": "16rem" });
+            //$(".icqccbtn").css({ "width": "19rem" });
+            //$(".internationalbtn").css({ "width": "21rem" });
+
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px", "font-weight": "bold" });
+            $(".Overal_conventions").css({ "box-shadow": "", "font-weight": "normal" });
+
+        })
+        $(".Overal_conventions").on("click", function () {
+            $(".Internal_conventions,.Chapter_conventions,.ICQCC_conventions,.National_conventions,.Inter_National_conventions").css({ "box-shadow": "none", "font-weight": "400" });
+            $(".conventionsPage").hide();
+            $("#Overal_conventions").show();
+            //$(".icqccbtn").css({ "width": "19rem" });
+            //$(".overalbtn").css({ "width": "22rem" });
+            //$(".internalbtn").css({ "width": "16rem" });
+            //$(".internationalbtn").css({ "width": "19rem" });
+            $(this).css({ "box-shadow": "rgb(0, 0, 0) 0px 5px 10px", "font-weight": "bold" });
+
+        });
+        $(".Home > a").mouseenter(function () {
+            // alert("hello");
+            $(this).css({ "background": "rgba(0, 123, 194,1)" });
+        });
+        $(".Home > a").mouseleave(function () {
+            // alert("hello");
+            $(this).css({ "background": "rgba(0, 123, 194,0)" });
+        });
+    })
+</script>
+<style>
+    .nav > li > a {
+        padding: 0px;
+        color: #27a1b8;
+    }
+
+        .nav > li > a:hover {
+            background: rgba(0, 123, 194,1);
+        }
+
+    .overallFirstdateSelect {
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        background: #fff;
+        z-index: 4;
+        overflow-y: hidden;
+        margin: auto;
+        padding: 10% 30%;
+        text-align: center;
+        //display:block;
+        border-radius: 1%;
+        top: 5rem;
+    }
+
+    .backgroundBlur {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: rgb(0, 0, 0,0.8);
+        position: absolute;
+        z-index: 4;
+        //display:block;
+    }
+</style>
+<link href="~/Content/zebra_datepicker.css" rel="stylesheet" />
+<div class="backgroundBlur"></div>
+<div ng-controller="ConventionsConclaveController as intCtrl">
+    @*<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>*@
+    <header>
+        <nav class="navbar " style="padding:1%;padding-bottom:0px;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                </div>
+                <ul class="nav">
+
+                    <li class="Home HeaderHide"><a href="/AReQCC/Home/dashboard" style="padding:0px;">Home</a></li>
+                </ul>
+                <div style="width: 20%;">
+                    <div class="userDetailsLeft">
+                        <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                        <div id="empcode" style="font-size: 12px;min-width: 200px;max-width:fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                    </div>
+                    <div class="userDetailsRight">
+                        <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="m-auto" style="width:90%">
+        <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+        <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+        <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+        <input type="hidden" value="@Session["functionCode"]" id="myHiddenfuncCode" />
+
+        <div class="overallFirstdateSelect">
+            <div class="form-group">
+                <label>Select Date From :- </label>
+                <input class="form-control  inputaddvalues mb-3" id="selectDate-overall-start1" ng-model="from" type="text" name="" style="text-align:center;font-weight:bold;width:100%;float:right;margin-right:1rem;height:30px;" />
+            </div>
+            <div class="form-group">
+                <label>Select Date End :- </label>
+                <input class="form-control  inputaddvalues mb-3" id="selectDate-overall-end1" ng-model="to" type="text" name="" style="text-align:center;font-weight:bold;width:100%;float:right;margin-right:1rem;height:30px;" />
+            </div>
+
+            <a href="/AReQCC/Home/dashboard" class="btn btn-info">Back to Home</a>
+        </div>
+        <div style="min-height:450px;width:100%;">
+            <div id="Overal_conventions" class="conventionsPage text-center">
+                <h4> Overall Teams and Projects</h4>
+                <div style="float:left;width:40%">
+                    <button class="btn btn-info" ng-click="exportToExcel('#overallProjects')" style="font-size: 14px;margin-bottom:5px;float:left">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search" style="width:65%;margin-left:1%;padding: 0.375rem 1.75rem;font-size: 1.4rem;float:left;" />
+                    <!-- <button class="btn btn-info" ng-click="export()" style="font-size: 14px;margin-bottom:5px;"> <span class="glyphicon glyphicon-share"></span>PDF</button>-->
+                    @*<input type="text" ng-model="search" class="form-control" placeholder="Search" style="width:20%;padding: 0.375rem 1.75rem;font-size: 1.4rem;" />*@
+
+                </div>
+
+                @*<a href="~/ConventionsConclave/ConventionalGraph"><img src="~/Img/chart_graph.png" style="width:40px;float:right;" /></a>*@
+                <div class="pull-right mt-3">
+                    View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)" id="viewby"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option><option>75</option><option>100</option></select> records at a time.
+                </div>
+                <div style="float:right;">
+                    <div class="form-group">
+                    </div>
+                    <input class="form-control float-left inputaddvalues" id="datepicker-overall-start1" ng-model="from" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                    <input class="form-control float-left inputaddvalues" id="datepicker-overall-end1" ng-model="to" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                </div>
+
+
+                @*<input type="text" ng-model="search" class="form-control" placeholder="Search" style="width:80px;padding: 0.375rem 0.75rem;font-size: 1.4rem;float:right;margin-right: 1rem;" />
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search" style="width:80px;padding: 0.375rem 0.75rem;font-size: 1.4rem;float:right;margin-right: 1rem;" />*@
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;" id="overallProjects">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>Sl.No</th>
+                            @*<th ng-hide="true">OverallId</th>*@
+                            @*<th>Company</th>
+                                <th>BusinessUnit</th>*@
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            @*<th>No.of Projects</th>*@
+                            <th>Employee's List</th>
+                            <th>Cost Saving</th>
+                            <th ng-hide="true">Team Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @*<tr ng-repeat="OveralConventions in OveralConventionsResponse | imgThumb:(intCtrl.currentPage -1 )* intCtrl.numPerPage | filter: search | dateRange : from : to | limitTo:intCtrl.numPerPage ">*@
+                        <tr ng-repeat="OveralConventions in filterData = (OveralConventionsResponse | filter: search) | limitTo : pageSize : (currentPage - 1) * pageSize | orderBy:'id':true">
+                            <td class="overal_{{OveralConventions.TeamId}}_{{OveralConventions.TeamId-1}} levelparentnotAdmin overal_{{OveralConventions.ProjectTitle | removeSpaces}}">
+                                <input id="chkCustomer_{{OveralConventions.Id}}" class="_{{OveralConventions.TeamId}}_{{OveralConventions.TeamId-1}} overconventions_{{OveralConventions.Id}} levelnotAdmin {{OveralConventions.ProjectTitle | removeSpaces}}" type="checkbox" ng-model="OveralConventions.Selected" ng-disabled="RoleID != 5" />
+                            </td>
+
+                            <th scope="row">
+                                {{$index+1}}
+
+                            </th>
+                            @*<td>
+                                    {{OveralConventions.Company}}
+                                </td>
+                                <td>
+                                    {{OveralConventions.BusinessUnit}}
+                                </td>*@
+                            <td>
+                                {{OveralConventions.Plant}}
+                            </td>
+                            <td>
+                                {{OveralConventions.Department}}
+                            </td>
+                            <td>
+                                {{OveralConventions.QCName}}
+                            </td>
+                            <td>
+                                {{OveralConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{OveralConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                <div ng-if="OveralConventions.TeamCount >= 2">
+                                    {{OveralConventions.TeamCount}}
+                                </div>
+                                <div ng-if="OveralConventions.TeamCount < 2">
+                                    0
+                                </div>
+                                @*{{OveralConventions.TeamCount}}*@
+                            </td>
+                            @*<td>
+                                    {{OveralConventions.NoOfProjects}}
+                                </td>*@
+                            <td id="employeesList_{{OveralConventions.TeamId}}_{{OveralConventions.TeamId-1}}"></td>
+                            <td>
+                                {{OveralConventions.CostSaving}}
+                            </td>
+                            <td ng-hide="true">
+                                {{OveralConventions.StatusName}}
+                            </td>
+
+
+                            @*<td ng-hide="true">
+                                    {{OveralConventions.Yearly}}
+                                </td>*@
+                        </tr>
+                    </tbody>
+
+                </table>
+                <div class="pull-right">
+
+                    <ul uib-pagination
+                        total-items="filterData.length"
+                        ng-model="currentPage"
+                        items-per-page="pageSize"
+                        ng-change="pageChanged()">
+                    </ul>
+
+                </div>
+                <div style="clear:both;"></div>
+                <input type="button" value="Move To Internal" ng-click="SubmitToInternalConvention()" class=" btn btn-info mb-2" ng-disabled="RoleID != 5" />
+            </div>
+            @*<th scope="row" ng-hide="true">
+                    {{//OveralConventions.Id}}
+                                 <td ng-hide="true">
+                    {{//OveralConventions.Awards}}
+                                <td ng-hide="true">
+                    {{//OveralConventions.TeamStatus}}
+                </td>
+                </td>
+                </th>*@
+            <div id="Internal_conventions" class="conventionsPage text-center">
+                <h4> Internal Conventions</h4>
+                <div style="float:left;width:40%">
+                    <button class="btn btn-info" ng-click="exportToExcel('#internal')" style="font-size: 14px;margin-bottom:5px;float:left">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+                    <!-- <button class="btn btn-info" ng-click="export()" style="font-size: 14px;margin-bottom:5px;"> <span class="glyphicon glyphicon-share"></span>PDF</button>-->
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search" style="width:65%;margin-left:1%;padding: 0.375rem 1.75rem;font-size: 1.4rem;float:left;" />
+                </div>
+                <div class="pull-right mt-3">
+                    View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)" id="viewby"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option><option>75</option><option>100</option></select> records at a time.
+                </div>
+                <div style="float:right;">
+                    <input class="form-control float-left inputaddvalues" id="datepicker-internal-start1" ng-model="from" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                    <input class="form-control float-left inputaddvalues" id="datepicker-internal-end1" ng-model="to" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                </div>
+                @*<a href="~/ConventionsConclave/ConventionalGraph"><img src="~/Img/chart_graph.png" style="width:40px;float:right;" /></a>*@
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;" id="internal">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>Sl.No</th>
+                            @*<th ng-hide="true">InternalId</th>*@
+                            @*<th>Company</th>
+                                <th>BusinessUnit</th>*@
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>Team Members</th>
+                            @*<th ng-hide="true">No.of Projects</th>*@
+                            <th>Cost Saving</th>
+                            <th ng-hide="true">Team Status Name</th>
+                            <th>Score</th>
+                            <th>Awards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="InternalConventions in InternalConventionsResponse | filter: search| limitTo : pageSize : (currentPage - 1) * pageSize">
+                            <td class="internal_{{InternalConventions.InternalId}} internal_{{InternalConventions.TeamId}}_{{InternalConventions.TeamId-1}}  internal_{{InternalConventions.ProjectTitle | removeSpaces}}">
+                                <input id="chkCustomer_{{InternalConventions.InternalId}}" class="_{{InternalConventions.TeamId}}_{{InternalConventions.TeamId-1}} internalconventions_{{InternalConventions.InternalId}} {{InternalConventions.ProjectTitle | removeSpaces}}" type="checkbox" ng-model="InternalConventions.Selected" ng-disabled="RoleID != 5" />
+                            </td>
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            @*<td ng-hide="true">
+            {{InternalConventions.Id}}
+        </td>*@
+                            @*<td>
+            {{InternalConventions.Company}}
+        </td>
+        <td>
+            {{InternalConventions.BusinessUnit}}
+        </td>*@
+                            <td>
+                                {{InternalConventions.Plant}}
+                            </td>
+                            <td>
+                                {{InternalConventions.Department}}
+                            </td>
+                            <td>
+                                {{InternalConventions.QCName}}
+                            </td>
+                            <td>
+                                {{InternalConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{InternalConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{InternalConventions.TeamCount}}
+                            </td>
+                            @*<td id="InternalTeamMebers_{{InternalConventions.InternalId}}_{{$index}}">*@
+                            @*<td id="InternalTeamMebers_{{InternalConventions.ProjectTitle | removeSpaces}}">*@
+                            <td id="InternalTeamMebers_{{InternalConventions.TeamId}}_{{InternalConventions.TeamId-1}}">
+                                @*{{InternalConventions.TeamCount}}*@
+                            </td>
+                            @*<td ng-hide="true">
+            {{InternalConventions.NoOfProjects}}
+        </td>*@
+                            <td>
+                                {{InternalConventions.CostSaving}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InternalConventions.StatusName}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InternalConventions.Score}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InternalConventions.Awards}}
+                            </td>
+                            <td>
+                                <input type="number" class="internal_{{InternalConventions.InternalId}} internalTextSel_{{InternalConventions.TeamId}}_{{InternalConventions.TeamId-1}}" style="width:60px" ng-model="InternalConventions.Score" min="0" max="100" value="{{InternalConventions.Score}}" ng-disabled="RoleID != 5" limit-to-max oninput="this.value = Math.abs(this.value)" />
+                            </td>
+                            <td>
+                                <select id="{{InternalConventions.Id}}" ng-model="InternalConventions.Id" ng-change="getProductDetails(InternalConventions.Id,[$index])" class="internalTextSel_{{InternalConventions.TeamId}}_{{InternalConventions.TeamId-1}} form-control float-left inputaddvalues internal_{{InternalConventions.InternalId}}" style="width:130px;" value="{{InternalConventions.Awards}}" ng-disabled="RoleID != 5">
+                                    <option value="">--select Awards--</option>
+                                    <option ng-repeat="sel in InternalConventionsAwardsResponse" ng-selected="InternalConventions.Id == sel.Id" value="{{sel.Id}}">{{sel.Name}}</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    @*<tfoot>
+                            <tr>
+                                <td align="center" colspan="15">
+                                    <div class="pull-right">
+                                        <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>*@
+                </table>
+                <div class="pull-right">
+                    <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize" ng-change="pageChanged()"></ul>
+                </div>
+                <div style="clear:both"></div>
+                <div class="statuserror alert-success" style="display:none"></div>
+                <input type="button" value="Save" ng-click="SaveToInternalConvention()" class=" btn btn-info mb-2" style="margin-top: 4px;" />
+                <input type="button" value="Move To Chapter" ng-click="SubmitToChapterConvention()" class=" btn btn-info mb-2" style="margin-top: 4px;" ng-disabled="RoleID != 5" />
+                <input type="button" value="Remove" ng-click="DeleteInternalConvention()" class=" btn btn-danger" ng-disabled="RoleID != 5" />
+            </div>
+            <div id="Chapter_conventions" class="conventionsPage text-center">
+                <h4>  Chapter Conventions</h4>
+                <div style="float:left;width:40%">
+                    <button class="btn btn-info" ng-click="exportToExcel('#chapter')" style="font-size: 14px;margin-bottom:5px;float:left">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+                    <!-- <button class="btn btn-info" ng-click="export()" style="font-size: 14px;margin-bottom:5px;"> <span class="glyphicon glyphicon-share"></span>PDF</button>-->
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search" style="width:65%;margin-left:1%;padding: 0.375rem 1.75rem;font-size: 1.4rem;float:left;" />
+                </div>
+                <div class="pull-right mt-3">
+                    View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)" id="viewby"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option><option>75</option><option>100</option></select> records at a time.
+                </div>
+                <div style="float:right;">
+                    <input class="form-control float-left inputaddvalues" id="datepicker-chapter-start1" ng-model="from" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                    <input class="form-control float-left inputaddvalues" id="datepicker-chapter-end1" ng-model="to" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                </div>
+                @*<a href="~/ConventionsConclave/ConventionalGraph"><img src="~/Img/chart_graph.png" style="width:40px;float:right;" /></a>*@
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;" id="chapter">
+                    <div style="float:left">
+
+                    </div>
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>Sl.No</th>
+                            @*<th ng-hide="true">ChapterId</th>*@
+                            @*<th>Company</th>
+                                <th>BusinessUnit</th>*@
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>Team Members</th>
+                            <th>Cost Saving</th>
+                            <th ng-hide="true">Team Status</th>
+                            <th>Score</th>
+                            <th>Awards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ChapterConventions in ChapterConventionsResponse | filter: search| limitTo : pageSize : (currentPage - 1) * pageSize | orderBy:'id':true">
+                            <td class="chapter_{{ChapterConventions.TeamId}}_{{ChapterConventions.TeamId-1}} chapter_{{ChapterConventions.CId}} chapter_{{ChapterConventions.ProjectTitle | removeSpaces}}">
+                                <input id="chkCustomer_{{ChapterConventions.CId}}" class="_{{ChapterConventions.TeamId}}_{{ChapterConventions.TeamId-1}} chapterconventions_{{ChapterConventions.CId}} {{ChapterConventions.ProjectTitle | removeSpaces}}" type="checkbox" ng-model="ChapterConventions.Selected" ng-disabled="RoleID != 5" />
+                            </td>
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+
+                            <td>
+
+                                {{ChapterConventions.Plant}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.Department}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.QCName}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{ChapterConventions.TeamCount}}
+                            </td>
+                            <td class="chapaterConventionTeamMembers_{{ChapterConventions.TeamId}}_{{ChapterConventions.TeamId-1}} ">
+                                @*chapaterConventionTeamMembers_{{ChapterConventions.chapterId}}_{{ChapterConventions.chapterId-1}}*@
+                                @*{{ChapterConventions.TeamCount}}*@
+                            </td>
+                            @*<td>
+                                    {{ChapterConventions.NoOfProjects}}
+                                </td>*@
+                            <td>
+                                {{ChapterConventions.CostSaving}}
+                            </td>
+                            <td ng-hide="true">
+                                {{ChapterConventions.StatusName}}
+                            </td>
+                            @*<td ng-hide="true">
+                                    {{ChapterConventions.TeamStatus}}
+                                </td>*@
+                            <td ng-hide="true">
+                                {{ChapterConventions.Score}}
+                            </td>
+                            <td ng-hide="true">
+                                {{ChapterConventions.Awards}}
+                            </td>
+                            <td>
+                                <input type="number" style="width:60px" ng-model="ChapterConventions.Score" pattern="^[0-9]*$" min="0" max="100" ng-disabled="RoleID != 5" value="{{ChapterConventions.Score}}" class="chapter_{{ChapterConventions.CId}} chapter_{{ChapterConventions.TeamId}}_{{ChapterConventions.TeamId-1}}" limit-to-max oninput="this.value = Math.abs(this.value)" />
+                                <input type="hidden" style="width:60px" ng-model="ChapterConventions.Yearly" pattern="^[0-9]*$" min="0" ng-disabled="RoleID != 5" limit-to-max oninput="this.value = Math.abs(this.value)" />
+                            </td>
+                            <td>
+                                <select id="{{ChapterConventions.CId}}" ng-model="ChapterConventions.AwardsId" ng-change="getProductDetails1(ChapterConventions.AwardsId,[$index])" class="chapter_{{ChapterConventions.TeamId}}_{{ChapterConventions.TeamId-1}} form-control float-left inputaddvalues chapter_{{ChapterConventions.CId}}" style="width:130px;" ng-disabled="RoleID != 5">
+                                    <option value="">--select Awards--</option>
+                                    <option ng-repeat="sel in ChapterConventionsAwardsResponse" ng-selected="ChapterConventions.AwardsId == sel.Id" value="{{sel.Id}}">{{sel.Name}}</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    @*<tfoot>
+                            <tr>
+                                <td align="center" colspan="15">
+                                    <div class="pull-right">
+                                        <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>*@
+                </table>
+                <div class="pull-right">
+                    <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize" ng-change="pageChanged()"></ul>
+                </div>
+                <div style="clear:both"></div>
+                <div class="statuserror alert-success" style="display:none"></div>
+                <input type="button" value="Save" ng-click="SaveToChapterConvention()" class=" btn btn-info mb-2" style="margin-top: 4px;" />
+                <input type="button" value="Move To National" ng-click="SubmitToNationalConvention()" class=" btn btn-info" ng-disabled="RoleID != 5" />
+                <input type="button" value="Remove" ng-click="DeleteChapterConvention()" class=" btn btn-danger" ng-disabled="RoleID != 5" />
+            </div>
+            <div id="National_conventions" class="conventionsPage text-center">
+                <h4> National Conventions</h4>
+                <div style="float:left;width:40%">
+                    <button class="btn btn-info" ng-click="exportToExcel('#national')" style="font-size: 14px;margin-bottom:5px;float:left">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+                    <!-- <button class="btn btn-info" ng-click="export()" style="font-size: 14px;margin-bottom:5px;"> <span class="glyphicon glyphicon-share"></span>PDF</button>-->
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search" style="width:65%;margin-left:1%;padding: 0.375rem 1.75rem;font-size: 1.4rem;float:left;" />
+                </div>
+                <div class="pull-right mt-3">
+                    View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)" id="viewby"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option><option>75</option><option>100</option></select> records at a time.
+                </div>
+                <div style="float:right;">
+                    <input class="form-control float-left inputaddvalues" id="datepicker-nation-start1" ng-model="from" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                    <input class="form-control float-left inputaddvalues" id="datepicker-nation-end1" ng-model="to" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                </div>
+                @*<a href="~/ConventionsConclave/ConventionalGraph"><img src="~/Img/chart_graph.png" style="width:40px;float:right;" /></a>*@
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;" id="national">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>SL.NO</th>
+                            @*@<th ng-hide="true">NationalId</th>
+                                                        <th>Company</th>
+                                <th>BusinessUnit</th>*@
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>Team Members</th>
+                            <th>Cost Saving</th>
+                            <th ng-hide="true">Team Status</th>
+                            @*<th ng-hide="true">Team Status</th>*@
+                            <th>Score</th>
+                            <th>Awards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="NationalConventions in NationalConventionsResponse | filter: search| limitTo : pageSize : (currentPage - 1) * pageSize | orderBy:'id':true">
+                            <td class="nation_{{NationalConventions.Id}} nation_{{NationalConventions.TeamId}}_{{NationalConventions.TeamId-1}} nation_{{NationalConventions.ProjectTitle | removeSpaces}}">
+                                <input id="chkCustomer_{{NationalConventions.Id}}" class="_{{NationalConventions.TeamId}}_{{NationalConventions.TeamId-1}} nationconventions_{{NationalConventions.Id}} {{NationalConventions.ProjectTitle | removeSpaces}}" type="checkbox" ng-model="NationalConventions.Selected" ng-disabled="RoleID != 5" />
+                            </td>
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            @*<td ng-hide="true">
+                                    {{NationalConventions.Id}}
+                                </td>*@
+                            @*<td>
+                                    {{NationalConventions.Company}}
+                                </td>
+                                <td>
+                                    {{NationalConventions.BusinessUnit}}
+                                </td>*@
+                            <td>
+                                {{NationalConventions.Plant}}
+                            </td>
+                            <td>
+                                {{NationalConventions.Department}}
+                            </td>
+                            <td>
+                                {{NationalConventions.QCName}}
+                            </td>
+                            <td>
+                                {{NationalConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{NationalConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{NationalConventions.TeamCount}}
+                            </td>
+                            <td id="nationConventionTeamMembers_{{NationalConventions.TeamId}}_{{NationalConventions.TeamId-1}}">
+                                @*{{NationalConventions.NoOfProjects}}*@
+                            </td>
+                            <td>
+                                {{NationalConventions.CostSaving}}
+                            </td>
+                            @*<td ng-hide="true">
+                                    {{NationalConventions.TeamStatus}}
+                                </td>*@
+
+                            <td ng-hide="true">
+                                {{NationalConventions.StatusName}}
+                            </td>
+                            <td ng-hide="true">
+                                {{NationalConventions.Score}}
+                            </td>
+
+                            <td ng-hide="true">
+                                {{NationalConventions.Awards}}
+                            </td>
+                            <td>
+                                <input type="number" class="nation_{{NationalConventions.Id}} nation_{{NationalConventions.TeamId}}_{{NationalConventions.TeamId-1}}" style="width:60px" ng-model="NationalConventions.Score" min="0" max="100" ng-disabled="RoleID != 5" value="{{NationalConventions.Score}}" limit-to-max oninput="this.value = Math.abs(this.value)" />
+                            </td>
+                            <td>
+                                <select id="{{NationalConventions.Id}}" ng-model="NationalConventions.nationalId" ng-change="getProductDetails2(NationalConventions.nationalId,[$index])" class="nation_{{NationalConventions.TeamId}}_{{NationalConventions.TeamId-1}} form-control float-left inputaddvalues nation_{{NationalConventions.Id}}" style="width:130px;" ng-disabled="RoleID != 5">
+                                    <option value="">--select Awards--</option>
+                                    <option ng-repeat="sel in NationalConventionsAwardsResponse" ng-selected="NationalConventions.nationalId == sel.Id" value="{{sel.Id}}">{{sel.Name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                    @*<tfoot>
+                            <tr>
+                                <td align="center" colspan="15">
+                                    <div class="pull-right">
+                                        <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>*@
+                </table>
+                <div class="pull-right">
+                    <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize" ng-change="pageChanged()"></ul>
+                </div>
+                <div style="clear:both"></div>
+                <div class="statuserror alert-success" style="display:none"></div>
+                <input type="button" value="Save" ng-click="SaveToNationalConvention()" class=" btn btn-info mb-2" style="margin-top: 4px;" />
+                <input type="button" value="Move To ICQCC" ng-click="SubmitToICQCCConvention()" class=" btn btn-info" ng-disabled="RoleID != 5" />
+                <input type="button" value="Remove" ng-click="DeleteNationalConvention()" class=" btn btn-danger" ng-disabled="RoleID != 5" />
+            </div>
+            <div id="ICQCC_conventions" class="conventionsPage text-center">
+                <h4> ICQCC Internal Screening</h4>
+                <div style="float:left;width:40%">
+                    <button class="btn btn-info" ng-click="exportToExcel('#icqcc')" style="font-size: 14px;margin-bottom:5px;float:left">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+                    <!-- <button class="btn btn-info" ng-click="export()" style="font-size: 14px;margin-bottom:5px;"> <span class="glyphicon glyphicon-share"></span>PDF</button>-->
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search" style="width:65%;margin-left:1%;padding: 0.375rem 1.75rem;font-size: 1.4rem;float:left;" />
+                </div>
+                <div class="pull-right mt-3">
+                    View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)" id="viewby"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option><option>75</option><option>100</option></select> records at a time.
+                </div>
+                <div style="float:right;">
+                    <input class="form-control float-left inputaddvalues" id="datepicker-icqcc-start1" ng-model="from" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                    <input class="form-control float-left inputaddvalues" id="datepicker-icqcc-end1" ng-model="to" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                </div>
+                @*<a href="~/ConventionsConclave/ConventionalGraph"><img src="~/Img/chart_graph.png" style="width:40px;float:right;" /></a>*@
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;" id="icqcc">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>SL.NO</th>
+                            @*<th ng-hide="true">ICQCCId</th>*@
+                            @*<th>Company</th>
+                                <th>BusinessUnit</th>*@
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>Team Members</th>
+                            <th>Cost Saving</th>
+                            <th ng-hide="true">Team Status</th>
+                            @*<th ng-hide="true">Team Status</th>*@
+                            <th>Score</th>
+                            <th>Awards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ICQCCConventions in ICQCCConventionsResponse | filter: search| limitTo : pageSize : (currentPage - 1) * pageSize | orderBy:'id':true">
+                            <td class="icqcc_{{ICQCCConventions.Id}} icqcc_{{ICQCCConventions.TeamId}}_{{ICQCCConventions.TeamId-1}} icqcc_{{ICQCCConventions.ProjectTitle | removeSpaces}}">
+                                <input id="chkCustomer_{{ICQCCConventions.ICQCCId}}" class="_{{ICQCCConventions.TeamId}}_{{ICQCCConventions.TeamId-1}} icqccconventions_{{ICQCCConventions.Id}} {{ICQCCConventions.ProjectTitle | removeSpaces}}" type="checkbox" ng-model="ICQCCConventions.Selected" ng-disabled="RoleID != 5" />
+                            </td>
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            @*<td ng-hide="true">
+                                    {{ICQCCConventions.ICQCCId}}
+                                </td>*@
+                            @*<td>
+                                    {{ICQCCConventions.Company}}
+                                </td>
+                                <td>
+                                    {{ICQCCConventions.BusinessUnit}}
+                                </td>*@
+                            <td>
+                                {{ICQCCConventions.Plant}}
+                            </td>
+                            <td>
+                                {{ICQCCConventions.Department}}
+                            </td>
+                            <td>
+                                {{ICQCCConventions.QCName}}
+                            </td>
+                            <td>
+                                {{ICQCCConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{ICQCCConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{ICQCCConventions.TeamCount}}
+                            </td>
+                            <td id="icqccconventionsTeamMembers_{{ICQCCConventions.Id}}_{{ICQCCConventions.Id-1}}">
+                                @*{{ICQCCConventions.NoOfProjects}}*@
+                            </td>
+                            <td>
+                                {{ICQCCConventions.CostSaving}}
+                            </td>
+                            @*<td ng-hide="true">
+                                    {{ICQCCConventions.TeamStatus}}
+                                </td>*@
+                            <td ng-hide="true">
+                                {{ICQCCConventions.StatusName}}
+                            </td>
+                            <td ng-hide="true">
+                                {{ICQCCConventions.Score}}
+                            </td>
+
+                            <td ng-hide="true">
+                                {{ICQCCConventions.Awards}}
+                            </td>
+                            <td>
+                                <input type="number" class="icqcc_{{ICQCCConventions.Id}} icqcc_{{ICQCCConventions.TeamId}}_{{ICQCCConventions.TeamId-1}}" style="width:60px" ng-model="ICQCCConventions.Score" min="0" max="100" ng-disabled="RoleID != 5" value="{{ICQCCConventions.Score}}" limit-to-max oninput="this.value = Math.abs(this.value)" />
+                            </td>
+                            <td>
+                                <select id="{{ICQCCConventions.Id}}" ng-model="ICQCCConventions.ICQCCId" ng-change="getProductDetails3(ICQCCConventions.ICQCCId,[$index])" class="icqcc_{{ICQCCConventions.TeamId}}_{{ICQCCConventions.TeamId-1}} form-control float-left inputaddvalues icqcc_{{ICQCCConventions.Id}}" style="width:130px;" ng-disabled="RoleID != 5">
+                                    <option value="">--select Awards--</option>
+                                    <option ng-repeat="sel in ICQCCConventionsAwardsResponse" ng-selected="ICQCCConventions.ICQCCId == sel.Id" value="{{sel.Id}}">{{sel.Name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                    @*<tfoot>
+                            <tr>
+                                <td align="center" colspan="15">
+                                    <div class="pull-right">
+                                        <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>*@
+                </table>
+                <div class="pull-right">
+                    <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize" ng-change="pageChanged()"></ul>
+                </div>
+                <div style="clear:both"></div>
+                <div class="statuserror alert-success" style="display:none"></div>
+                <input type="button" value="Save" ng-click="SaveToICQCCConvention()" class=" btn btn-info mb-2" style="margin-top: 4px;" />
+                <input type="button" value="Move To International" ng-click="SubmitToInterNationalConvention()" class=" btn btn-info" ng-disabled="RoleID != 5" />
+                <input type="button" value="Remove" ng-click="DeleteICQCCConvention()" class=" btn btn-danger" ng-disabled="RoleID != 5" />
+            </div>
+            <div id="Inter_National_conventions" class="conventionsPage text-center">
+                <h4>InterNational Conventions</h4>
+                <div style="float:left;width:40%">
+                    <button class="btn btn-info" ng-click="exportToExcel('#international')" style="font-size: 14px;margin-bottom:5px;float:left">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+                    <!-- <button class="btn btn-info" ng-click="export()" style="font-size: 14px;margin-bottom:5px;"> <span class="glyphicon glyphicon-share"></span>PDF</button>-->
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search" style="        width: 65%;
+        margin-left: 1%;
+        padding: 0.375rem 1.75rem;
+        font-size: 1.4rem;
+        float: left;" />
+                </div>
+                <div class="pull-right mt-3">
+                    View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)" id="viewby"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option><option>75</option><option>100</option></select> records at a time.
+                </div>
+                <div style="float:right;">
+                    <input class="form-control float-left inputaddvalues" id="datepicker-international-start1" ng-model="from" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                    <input class="form-control float-left inputaddvalues" id="datepicker-international-end1" ng-model="to" type="text" name="" style="width:90px;float:right;margin-right:1rem;height:30px;" />
+                </div>
+                @*<a href="~/ConventionsConclave/ConventionalGraph">
+                                        <img src="~/Img/chart_graph.png" style="        width: 40px;
+                            float: right;
+                    " />
+                                    </a>*@
+                <table class="table table-striped table-bordered table-hover tabel-condensed" style="font-size:12px;" id="international">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th></th>
+                            <th>SL.NO</th>
+                            @*<th ng-hide="true">InternationalId</th>*@
+                            @*<th>Company</th>
+                                <th>BusinessUnit</th>*@
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>Team Members</th>
+                            <th>Cost Saving</th>
+                            @*<th ng-hide="true">Team Status</th>*@
+                            <th ng-hide="true">Team Status</th>
+                            <th>Score</th>
+                            <th>Awards</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="InterNationalConventions in InterNationalConventionsResponse | filter: search| limitTo : pageSize : (currentPage - 1) * pageSize | orderBy:'id':true">
+                            <td class="international_{{InterNationalConventions.Id}} international_{{InterNationalConventions.TeamId}}_{{InterNationalConventions.TeamId-1}} international_{{InterNationalConventions.ProjectTitle | removeSpaces}}">
+                                <input id="chkCustomer_{{InterNationalConventions.Id}}" class="_{{InterNationalConventions.TeamId}}_{{InterNationalConventions.TeamId-1}} internationalconventions_{{InterNationalConventions.Id}} {{InterNationalConventions.ProjectTitle | removeSpaces}}" type="checkbox" ng-model="InterNationalConventions.Selected" ng-disabled="RoleID != 5" />
+                            </td>
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            @*<td ng-hide="true">
+                                    {{InterNationalConventions.Id}}
+                                </td>*@
+                            @*<td>
+                                    {{InterNationalConventions.Company}}
+                                </td>
+                                <td>
+                                    {{InterNationalConventions.BusinessUnit}}
+                                </td>*@
+                            <td>
+                                {{InterNationalConventions.Plant}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.Department}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.QCName}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{InterNationalConventions.TeamCount}}
+                            </td>
+                            <td id="internationalTeamMembers_{{InterNationalConventions.TeamId}}_{{InterNationalConventions.TeamId-1}}">
+                                @*{{InterNationalConventions.NoOfProjects}}*@
+                            </td>
+                            <td>
+                                {{InterNationalConventions.CostSaving}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InterNationalConventions.StatusName}}
+                            </td>
+                            @*<td ng-hide="true">
+                                    {{InterNationalConventions.TeamStatus}}
+                                </td>*@
+                            <td ng-hide="true">
+                                {{InterNationalConventions.Score}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InterNationalConventions.Awards}}
+                            </td>
+                            <td>
+                                <input type="number" class="international_{{InterNationalConventions.Id}} international_{{InterNationalConventions.TeamId}}_{{InterNationalConventions.TeamId-1}}" style="width:60px" ng-model="InterNationalConventions.Score" min="0" max="100" ng-disabled="RoleID != 5" value="{{InterNationalConventions.Score}}" limit-to-max oninput="this.value = Math.abs(this.value)" />
+                            </td>
+                            <td>
+                                <select id="{{InterNationalConventions.Id}}" ng-model="InterNationalConventions.InternalId" ng-change="getProductDetails4(InterNationalConventions.InternalId,[$index])" class="international_{{InterNationalConventions.TeamId}}_{{InterNationalConventions.TeamId-1}} form-control float-left inputaddvalues selectAwards_{{InterNationalConventions.Id}} international_{{InterNationalConventions.Id}}" style="width:130px;" ng-disabled="RoleID != 5">
+                                    <option value="">--select Awards--</option>
+                                    <option ng-repeat="sel in InterNationalConventionsAwardsResponse" ng-selected="InterNationalConventions.InternalId == sel.Id" value="{{sel.Id}}">{{sel.Name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div ng-if='InterNationalConventions.ActiveStatus == 2 &&  RoleID==5'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" ng-click="deleteInternational(InterNationalConventions.Id)" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                    </svg>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                    @*<tfoot>
+                            <tr>
+                                <td align="center" colspan="15">
+                                    <div class="pull-right">
+                                        <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>*@
+                </table>
+                <div class="pull-right">
+                    <ul uib-pagination total-items="totalCount" ng-model="currentPage" items-per-page="pageSize" ng-change="pageChanged()"></ul>
+                </div>
+                <div style="clear:both"></div>
+                <div class="alert alert-success" role="alert" style="display:none;">
+                    InterNational Conventions Submit Successfully
+                </div>
+                <div class="statuserror alert-success" style="display:none"></div>
+                <input type="button" value="Save" ng-click="SaveToInterNationalConvention()" class=" btn btn-info mb-2" style="margin-top: 4px;" />
+                <input type="button" value="Submit" ng-click="SubmitInterNationalConvention()" class=" btn btn-info" ng-disabled="RoleID != 5" />
+                <input type="button" value="Remove" ng-click="DeleteInternationalConvention()" class=" btn btn-danger" ng-disabled="RoleID != 5" />
+            </div>
+        </div>
+        <div style="margin-top:0%;margin-bottom:2%;">
+            <div class="BottomMenuIconsMain overalbtn" style="width: 17%;margin-left:4%;">
+                <button class="btn btn-success BottomMenuIcons Overal_conventions" ng-click="overalView()">Overall Teams and Projects</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+            <div class="BottomMenuIconsMain internalbtn" style="width: 14%;">
+                <button class="btn btn-info BottomMenuIcons Internal_conventions" ng-click="InternalView()">Internal conventions</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+
+            <div class="BottomMenuIconsMain chapterbtn" style="width: 14%;">
+                <button class="btn btn-danger BottomMenuIcons Chapter_conventions" ng-click="ChapterView()">Chapter conventions</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+            <div class="BottomMenuIconsMain nationbtn" style="width: 14%;">
+                <button class="btn btn-primary BottomMenuIcons National_conventions" ng-click="NationalView()">National conventions</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+            <div class="BottomMenuIconsMain icqccbtn" style="width: 17%;">
+                <button class="btn btn-warning BottomMenuIcons ICQCC_conventions" ng-click="ICQCCView()">ICQCC Internal Screening</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+            <div class="BottomMenuIconsMain internationalbtn" style="width: 17%;">
+                <button class="btn btn-success BottomMenuIcons Inter_National_conventions" ng-click="InterNational()">International  conventions</button>
+                <div class="BottomMenuIconsPopUp">
+                    Hello World
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/Scripts/JsControllers/angular-1.5.8.js"></script>
+    <script src="~/Scripts/JsControllers/angular-animate.js"></script>
+    <script src="~/Scripts/JsControllers/angular-sanitize.js"></script>
+    <script src="~/Scripts/JsControllers/ui-bootstrap-tpls-2.1.3.js"></script>
+    <script src="~/Scripts/JsControllers/ConventionsConclaveController.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/html2canvas.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/zebra_datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#selectDate-overall-start1').Zebra_DatePicker({
+                format: 'Y',
+                direction: false,
+                pair: $('#selectDate-overall-end1')
+            });
+
+            $('#selectDate-overall-end1').Zebra_DatePicker({
+                format: 'Y',
+                direction: 1,
+                onSelect: function (i) { $(".overallFirstdateSelect,.backgroundBlur").hide(); $("body").css({ "overflow": "auto" }); var from = ($("#selectDate-overall-start1").val()) + '-04-01'; var to = ($("#selectDate-overall-end1").val()) + '-03-01'; angular.element(document.getElementById('selectDate-overall-end1')).scope().myfunction('overall', from, to); },
+            });
+            $('#datepicker-overall-start1').Zebra_DatePicker({
+                format: 'Y',
+                direction: false,
+                pair: $('#datepicker-overall-end1')
+            });
+
+            $('#datepicker-overall-end1').Zebra_DatePicker({
+                format: 'Y',
+                direction: 1,
+                onSelect: function (i) { var from = ($("#datepicker-overall-start1").val()) + '-04-01'; var to = ($("#datepicker-overall-end1").val()) + '-03-01'; angular.element(document.getElementById('datepicker-overall-end1')).scope().myfunction('overall', from, to); },
+            });
+            $('#datepicker-internal-start1').Zebra_DatePicker({
+                format: 'Y',
+                direction: false,
+                pair: $('#datepicker-internal-end1')
+            });
+
+            $('#datepicker-internal-end1').Zebra_DatePicker({
+                format: 'Y',
+                direction: 1,
+                onSelect: function (i) { var from = ($("#datepicker-internal-start1").val()) + '-04-01'; var to = ($("#datepicker-internal-end1").val()) + '-03-01'; angular.element(document.getElementById('datepicker-internal-end1')).scope().myfunction('internal', from, to); },
+            });
+            $('#datepicker-chapter-start1').Zebra_DatePicker({
+                format: 'Y',
+                direction: false,
+                pair: $('#datepicker-chapter-end1')
+            });
+
+            $('#datepicker-chapter-end1').Zebra_DatePicker({
+                format: 'Y',
+                direction: 1,
+                onSelect: function (i) { var from = ($("#datepicker-chapter-start1").val()) + '-04-01'; var to = ($("#datepicker-chapter-end1").val()) + '-03-01'; angular.element(document.getElementById('datepicker-chapter-end1')).scope().myfunction('chapter', from, to); },
+            });
+            $('#datepicker-nation-start1').Zebra_DatePicker({
+                format: 'Y',
+                direction: false,
+                pair: $('#datepicker-nation-end1')
+            });
+
+            $('#datepicker-nation-end1').Zebra_DatePicker({
+                format: 'Y',
+                direction: 1,
+                onSelect: function (i) { var from = ($("#datepicker-nation-start1").val()) + '-04-01'; var to = ($("#datepicker-nation-end1").val()) + '-03-01'; angular.element(document.getElementById('datepicker-nation-end1')).scope().myfunction('nation', from, to); },
+            });
+            $('#datepicker-icqcc-start1').Zebra_DatePicker({
+                format: 'Y',
+                direction: false,
+                pair: $('#datepicker-icqcc-end1')
+            });
+
+            $('#datepicker-icqcc-end1').Zebra_DatePicker({
+                format: 'Y',
+                direction: 1,
+                onSelect: function (i) { var from = ($("#datepicker-icqcc-start1").val()) + '-04-01'; var to = ($("#datepicker-icqcc-end1").val()) + '-03-01'; angular.element(document.getElementById('datepicker-icqcc-end1')).scope().myfunction('icqcc', from, to); },
+            });
+            $('#datepicker-international-start1').Zebra_DatePicker({
+                format: 'Y',
+                direction: false,
+                pair: $('#datepicker-international-end1')
+            });
+
+            $('#datepicker-international-end1').Zebra_DatePicker({
+                format: 'Y',
+                direction: 1,
+                onSelect: function (i) { var from = ($("#datepicker-international-start1").val()) + '-04-01'; var to = ($("#datepicker-international-end1").val()) + '-03-01'; angular.element(document.getElementById('datepicker-international-end1')).scope().myfunction('international', from, to); },
+            });
+        });
+                                    //function fetchdetailsbGoals(from,to) {
+                                    //    alert(from);
+                                    //    alert(to);
+                                    //    $.ajax(function () {
+                                    //        url
+                                    //    })
+                                    //    OveralConventionsFetchByDate
+                                    //}
+    </script>
+</div>
+
+
+

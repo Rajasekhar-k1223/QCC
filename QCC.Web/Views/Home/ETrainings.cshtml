@@ -1,0 +1,47 @@
+﻿<input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+<input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+<input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+<header>
+    <nav class="navbar " style=" padding-bottom: 5px; ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+            </div>
+            <div class="nav" style="">
+                <ul class="nav">
+                    <li class="Home HeaderHide"><a href="/AReQCC/Home/dashboard">Home</a></li>
+                </ul>
+            </div>
+            @*<div id="notificaicon">Status</div>
+                <div style="width:21%;height:40px;" id="notifiList"></div>*@
+            <div style="width: 20%;" id="rightSideMenu">
+
+                <div class="userDetailsLeft">
+                    <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                    @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                    <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                    <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                </div>
+                <div class="userDetailsRight">
+                    <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                </div>
+            </div>
+            @*<button class="btn btn-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;" ng-click="logout()"><img src="~/Img/logout.png" style="width: 18px;margin-right: 5px;" />Logout</button>*@
+        </div>
+    </nav>
+</header>
+<ul>
+    <li style="width:27%;">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <a href="~/Img/docs/QCC 12 step methodology.pdf" target="_blank" class="btn btn-outline-info" style="font-size: 2rem;font-weight: bold;margin: 1rem;border-radius: 6px;width:87%">QCC 12 step methodology</a>
+    </li>
+    <li style="width:27%;">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <a href="~/Img/docs/QC tools-Techniques.pdf" target="_blank" class="btn btn-outline-primary" style="font-size: 2rem;font-weight: bold;margin: 1rem;border-radius: 6px;width:87%">QC tools & Techniques</a>
+    </li>
+</ul>
+
+
+@*<embed src="~/Img/docs/Document.pdf" style="width: 80vw;margin: 0% 9%;height: 95vh;" type="application/pdf">*@
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/JsControllers/DashboardController.js"></script>

@@ -1,0 +1,233 @@
+﻿@{
+    ViewBag.Title = "Profile";
+}
+<div ng-controller="ProfileController">
+        <header>
+            <nav class="navbar " style="padding:1%;padding-bottom:0px;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                    </div>
+                    <ul class="nav" >
+                        <li class="Reports HeaderHide"><a href="/QCC.Web/Reports/Reports">Reports</a></li>
+                        <li class="activeL Profile HeaderHide" style="background: rgba(0, 123, 194,1);"><a href="/QCC.Web/Profile/Profile" style="color:#fff;">Profile</a></li>
+                        <li class="Home HeaderHide"><a href="/QCC.Web/Home/dashboard">Home</a></li>
+                    </ul>
+                    <div style="width: 20%;">
+                        <div class="userDetailsLeft">
+                            <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                            @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                            <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                            <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                        </div>
+                        <div class="userDetailsRight">
+                            <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+            <input type="hidden" value="@Session["empMailId"]" id="myHiddenempMailId" />
+            <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+            <div class="row">
+                <div class="form-group">
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search" style="font-size: 1.4rem;">
+                </div>
+                <table class="table table-striped table-bordered table-hover tabel-condensed">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th>Id</th>
+                            <th>Company</th>
+                            <th>Business Unit</th>
+                            <th>Plant</th>
+                            <th>Team Name</th>
+                            <th>Team Strength</th>
+                            <th>Status</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="Approved in ApprovedResponse | filter:search">
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            <td ng-hide="true">
+                                {{Approved.Id}}
+                            </td>
+                            <td>
+                                {{Approved.Company}}
+                            </td>
+                            <td>
+                                {{Approved.BusinessUnit}}
+                            </td>
+                            <td>
+                                {{Approved.Plant}}
+                            </td>
+                            <td>
+                                {{Approved.TeamName}}
+                            </td>
+                            <td ng-hide="true">
+                                {{Approved.Status}}
+                            </td>
+                            <td>
+                                {{Approved.TeamStrength}}
+                            </td>
+                            <td>
+                                {{Approved.StatusName}}
+                            </td>
+                            <td style="text-align:center">
+                                <span ng-click="toggleEdit(Approved)" class="glyphicon glyphicon-pencil"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td align="center" colspan="8">
+                                <div class="pull-right">
+                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages" style="margin-right:30px;float:left;"></pagination>
+                                    <a class="btn btn-primary" style="margin: 6.5% 0%;color:#fff;background-color: #337ab7;border-color: #2e6da4;">Page: {{pageIndex}} / {{numPages}}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div id="ProjectSelectionSheetView" style="width:92%;margin:4%;">
+            <div style="font-weight:bold;font-size:16px;padding:0.5%;float:right;cursor:pointer;" ng-click="Close();" id="close">X</div>
+            <button class="btn btn-info" ng-click="export()" style="font-size: 14px;margin-bottom:5px;"> <span class="glyphicon glyphicon-share"></span>PDF</button>
+            <div class="canvas_div_pdf">
+                <div ng-hide="P1">Project1 : {{Project1}}</div>
+                <div ng-hide="P2">Project2 : {{Project2}}</div>
+                <div class="col-sm-12 col-md-9 col-lg-9" style="padding-right:0px;">
+                    <div class="row" style="margin:0px;">
+                        <div class="col-sm-12 col-md-4 col-lg-4 font-bold mb-2 pl-2">
+                            <div class="headcontent">Circle Name :</div><div class="headcontentval"> {{CircleName}}</div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-4 mb-2 pl-2">
+                            <div class="headcontent">Plant : </div><div class="headcontentval plantDesc"> {{Plant}}</div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-4 mb-2 pl-2">
+                            <div class="headcontent">BusinessUnit : </div><div class="headcontentval"> {{BusinessUnit}}</div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-4 mb-2 p-1" ng-repeat="circle in CircleResponse" ng-if="[$index+1] != '7'">
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '1'">Facilitator</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '2'">Team Leader</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '3'">Team Member</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '4'">Team Member</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '5'">Team Member</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '6'">Team Member</div>
+                            <div style="border:1px solid #000;width:100%;height:92px;padding:2%;border-radius: 3px;">
+                                <div style="width:60%;float:left;height:75px;">
+                                    <div class="mr-0 headerNAmeT">{{circle.EmpCode}}</div>
+                                    <div class="mr-0 headerNAmeT">{{circle.EmpName}}</div>
+                                    <div class="mr-0 headerNAmeT">{{circle.Department}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{circle.Grade}}</div>
+                                </div>
+                                <div style="width:40%;float:left;height:75px;">
+                                    <img src="{{circle.Image}}" style="width:100%;height:100%;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3" style="padding-left:4px;">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div style="border:1px dashed #000;width:100%;height:140px;padding:2%;border-radius: 3px;margin-bottom:10px;">
+                                <p class="mr-0 headerNAmeT" style="text-indent: 5px;font-size:14px;">Approval Level </p>
+                                <div style="width:100%;float:left;height:80px;">
+                                    <div class="mr-0 headerNAmeT" style="text-indent:5px;">Level-1 :- Section Head</div>
+                                    <div class="mr-0 headerNAmeT" style="text-indent:5px;">Level-2 :- CI – Head</div>
+                                    <div class="mr-0 headerNAmeT" style="text-indent:5px;">Level-3 :- HOD </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}">Section Incharge</div>
+                            <div style="border:1px solid #000;width:100%;height:92px;padding:2%;border-radius: 3px;">
+                                <div style="width:60%;float:left;height:80px;">
+                                    <div class="mr-0 headerNAmeT">{{SectionEmpCode}}</div>
+                                    <div class="mr-0 headerNAmeT">{{SectionEmpName}}</div>
+                                    <div class="mr-0 headerNAmeT">{{SectionDepartment}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{SectionGrade}}</div>
+                                </div>
+                                <div style="width:40%;float:left;height:80px;">
+                                    <img src="{{SectionImage}}" style="width:100%;height:100%;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-10 col-lg-10" style="margin: 1% 9%;">
+                    <table class="table table-bordered">
+                        <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;"></thead>
+                        <tbody>
+                            <tr ng-repeat="ProjectDetails in ProjectDetailsResponse">
+                                <th scope="row">
+                                    {{$index + 1}} Project
+                                </th>
+                                <td>
+                                    {{ProjectDetails.Title}}
+                                </td>
+                                <td ng-hide="true">
+                                    {{ProjectDetails.Status}}
+                                </td>
+                                <td style="font-weight:bold;">
+                                    {{ProjectDetails.StatusName}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table border="1" align="center">
+                    <tr>
+                        <th colspan="2"> InternalConventions</th>
+                        <th colspan="2">ChapterConventions</th>
+                        <th colspan="2">NationalConventions</th>
+                        <th colspan="2">InternationalConventions</th>
+                    </tr>
+                    <tr>
+                        <th>Score</th>
+                        <th>Awards</th>
+                        <th>Score</th>
+                        <th>Awards</th>
+                        <th>Score</th>
+                        <th>Awards</th>
+                        <th>Score</th>
+                        <th>Awards</th>
+                    </tr>
+                    <tr>
+                        <td>{{internalConventionScoreAndAwards[0].InternalScore}}</td>
+                        <td>{{internalConventionScoreAndAwards[0].InternalAward}}</td>
+                        <td>{{chapterConventionsScoreAndAwards[0].ChapterScore}}</td>
+                        <td>{{chapterConventionsScoreAndAwards[0].ChapterAward}}</td>
+                        <td>{{nationalConventionScoreAndAwards[0].NationalScore}}</td>
+                        <td>{{nationalConventionScoreAndAwards[0].NationalAward}}</td>
+                        <td>{{internationalConventionScoreAndAwards[0].InterNationalScore}}</td>
+                        <td>{{internationalConventionScoreAndAwards[0].InterNationalAward}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{internalConventionScoreAndAwards[1].InternalScore}}</td>
+                        <td>{{internalConventionScoreAndAwards[1].InternalAward}}</td>
+                        <td>{{chapterConventionsScoreAndAwards[1].ChapterScore}}</td>
+                        <td>{{chapterConventionsScoreAndAwards[1].ChapterAward}}</td>
+                        <td>{{nationalConventionScoreAndAwards[1].NationalScore}}</td>
+                        <td>{{nationalConventionScoreAndAwards[1].NationalAward}}</td>
+                        <td>{{internationalConventionScoreAndAwards[1].InterNationalScore}}</td>
+                        <td>{{internationalConventionScoreAndAwards[1].InterNationalAward}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    <div class="body_blur"></div>
+    <div class="showtableList">
+    </div>
+    
+    <script src="~/Scripts/jspdf.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/JsControllers/ProfileController.js"></script>
+    <script src="~/Scripts/dirPagination.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+</div>

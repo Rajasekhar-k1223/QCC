@@ -1,0 +1,367 @@
+﻿@{
+    ViewBag.Title = "Team Registration";
+}
+<script>
+    $(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var fsize = input.files[0].size;
+                if (Math.round((fsize / 1024)) <= 200) {
+                    reader.onload = function (e) {
+                        $('#image_upload_preview').attr('src', e.target.result);
+                        $("#sucessalert").show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                else {
+                    alert("Your Image Size Should Not Exceeds 200KB");
+                }
+
+            }
+        }
+        function readURL1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var fsize = input.files[0].size;
+                if (Math.round((fsize / 1024)) <= 200) {
+                    reader.onload = function (e) {
+                        $('#image_upload_preview_1').attr('src', e.target.result);
+                        $("#sucessalert_1").show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                else {
+                    alert("Your Image Size Should Not Exceeds 200KB");
+                }
+
+            }
+        }
+        function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var fsize = input.files[0].size;
+                if (Math.round((fsize / 1024)) <= 200) {
+                    reader.onload = function (e) {
+                        $('#image_upload_preview_2').attr('src', e.target.result);
+                        $("#sucessalert_2").show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                else {
+                    alert("Your Image Size Should Not Exceeds 200KB");
+                }
+            }
+        }
+        function readURL3(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var fsize = input.files[0].size;
+                if (Math.round((fsize / 1024)) <= 200) {
+                    reader.onload = function (e) {
+                        $('#image_upload_preview_3').attr('src', e.target.result);
+                        $("#sucessalert_3").show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                else {
+                    alert("Your Image Size Should Not Exceeds 200KB");
+                }
+            }
+        }
+        function readURL4(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var fsize = input.files[0].size;
+                if (Math.round((fsize / 1024)) <= 200) {
+                    reader.onload = function (e) {
+                        $('#image_upload_preview_4').attr('src', e.target.result);
+                        $("#sucessalert_4").show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                else {
+                    alert("Your Image Size Should Not Exceeds 200KB");
+                }
+            }
+        }
+        function readURL5(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var fsize = input.files[0].size;
+                if (Math.round((fsize / 1024)) <= 200) {
+                    reader.onload = function (e) {
+                        $('#image_upload_preview_5').attr('src', e.target.result);
+                        $("#sucessalert_5").show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                else {
+                    alert("Your Image Size Should Not Exceeds 200KB");
+                }
+            }
+        }
+        function readURL6(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var fsize = input.files[0].size;
+                if (Math.round((fsize / 1024)) <= 200) {
+                    reader.onload = function (e) {
+                        $('#image_upload_preview_6').attr('src', e.target.result);
+                        $("#sucessalert_6").show();
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                else {
+                    alert("Your Image Size Should Not Exceeds 200KB");
+                }
+            }
+        }
+        $("#Facilitatorfile").change(function () {
+            readURL(this);
+        });
+        $("#TLfile").change(function () {
+            readURL1(this);
+        });
+        $("#TM1file").change(function () {
+            readURL2(this);
+        });
+        $("#TM2file").change(function () {
+            readURL3(this);
+        });
+        $("#TM3file").change(function () {
+            readURL4(this);
+        });
+        $("#TM4file").change(function () {
+            readURL5(this);
+        });
+        $("#L1file").change(function () {
+            readURL6(this);
+        });
+        $(".dropdown").hover(
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            },
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            });
+
+        $("#circlename").keypress(function (e) {
+            var keyCode = e.keyCode || e.which;
+
+            $("#lblError").html("");
+
+            ////Regex for Valid Characters i.e. Alphabets and Numbers.
+            //var regex = /^[A-Za-z]+$/;
+
+            ////Validate TextBox value against the Regex.
+            //var isValid = regex.test(String.fromCharCode(keyCode));
+            //if (!isValid) {
+            //    $("#lblError").html("Only Alphabets and Numbers allowed.");
+            //}
+
+            //return isValid;
+            var regex = new RegExp("^[a-zA-Z0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+    });
+</script>
+<div ng-controller="HomeController">
+    <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+    <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+    <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+    <input type="hidden" value="@Session["functionCode"]" id="functionCode" />
+    <header>
+        <nav class="navbar" style="padding:0%;padding-top:1%;padding-bottom:0px;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                </div>
+                <ul class="nav">
+                    <li class="activeL New HeaderHide" style="background: rgba(0, 123, 194,1);"><a href="/QCC.Web/Home/TeamRegistration" style="color:#fff;" class="">Create New Team</a></li>
+                    <li class="Inflow HeaderHide"><a href="/QCC.Web/Home/Inflow">Inflow <sup style="background:yellow;color:red;font-weight:bold;">{{InflowCount}}</sup></a></li>
+                    <li class="Approved HeaderHide"><a href="/QCC.Web/Home/Approved">Approved <sup style="background:yellow;color:red;font-weight:bold;">{{ApproveCount}}</sup></a></li>
+                    <li class="Rejected HeaderHide"><a href="/QCC.Web/Home/Rejected">Rejected <sup style="background:yellow;color:red;font-weight:bold;">{{RejectCount}}</sup></a></li>
+                    <li class="Dashboard HeaderHide"><a href="/QCC.Web/Reports/TotalReports">Dashboard</a></li>
+
+                    <li class="Home HeaderHide"><a href="/QCC.Web/Home/dashboard">Home</a></li>
+                </ul>
+                @*<div style="width: 90px;float:left;">
+                        <div id="LoginDate" style="font-size: 12px;background: #ececec4a;width: fit-content;padding: 1% 5%;border-radius: 3px;text-align:center;font-weight: bold;"></div>
+                        <img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />
+                        <div id="empcode" style="font-size: 12px;background: #ececec4a;width: fit-content;padding: 1% 5%;border-radius: 3px;text-align:center;font-weight: bold;"></div>
+                    </div>
+                    <button class="btn btn-primary" ng-click="logout()" style="font-size:12px;font-weight:bold;margin-bottom: 15px;"><img src="~/Img/logout.png" style="width: 18px;margin-right: 5px;" />Logout</button>*@
+                <div style="width: 20%;">
+                    <div class="userDetailsLeft">
+                        <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                        <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                    </div>
+                    <div class="userDetailsRight">
+                        <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <h3 style="text-align: center;width: 90%;">Create New Circle</h3>
+            <div class="col-sm-12 col-md-6 col-lg-6" style="margin:1% 27%;margin-left:30%;text-align:center;">
+                <div class="form-group" style="padding-top: 1%;margin-bottom:0px;">
+                    <div class="w-25 float-left text-left pr-1" style="font-size:14px;line-height:40px;font-weight:bold;float: left;">
+                        Circle Name
+                    </div><div style="float:left;width:4%;line-height:45px;font-weight:bold;">:-</div><div style="width:50%;float:left;padding: 1%;">
+
+                        <input type="text" class="mb-1 form-control" id="circlename" placeholder="Enter Circle Name" style="margin-bottom:5px;margin-top:5px;font-size:12px;height: 30px;font-weight: bold;" />
+                    </div>
+                    <div style="clear:both"></div>
+
+
+                </div>
+                <div class="form-group" style="padding-top: 1%;">
+                    <div class="w-25 float-left text-left pr-1" style="font-size:14px;line-height:40px;font-weight:bold;float: left;">
+                        Circle Type
+                    </div><div style="float:left;width:4%;line-height:45px;;font-weight:bold;">:-</div>
+                    <div style="width:50%;float:left;padding: 1%;">
+                        <select ng-model="selectedcircleypevalue" class="form-control float-left inputaddvalues" style="height: 30px;font-weight: bold;font-size:12px;" id="circleType">
+                            <option value="">Select New/Old</option>
+                            <option ng-repeat="sel in CircleType" ng-selected="selectedcircleypevalue == sel.Id" value="{{sel.Id}}">{{sel.circleType}}</option>
+                        </select>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div id="error" style="font-size: 14px;color: red;font-weight: bold;text-align: left;padding-left: 12%;"></div>
+                <button class="btn btn-info font-bold" style="margin-right: 45%;font-weight:bold;margin-bottom:5px;margin-top:5px;font-size:12px;" ng-click="submitCircle()">Register</button>
+            </div>
+
+            <div id="createteamtable">
+
+                <table class="table borderless" id="" style="border-radius:5px;font-size:12px;border:1px solid #000;">
+                    <form name="myform" style="width:100%;">
+                        <thead class="bg-dark text-light">
+                            <tr>
+                                <th>Role</th>
+                                <th>Employee Code</th>
+                                <th>Employee Name</th>
+                                <th>Department</th>
+                                <th>Grade</th>
+                                <th>Profile Pic</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align:right;line-height:25px;font-weight:bold;">Facilitator :- </td>
+                                <td><input type="number" class="form-control" placeholder="Employee Code" name="memberName" ng-model="FacilitatorempCode" min="0" ng-blur="Facilitator()" ng-required="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Employee Name" name="memberName" ng-model="FacilitatorempName" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Department" name="memberName" ng-model="Facilitatordepartment" ng-disabled="true" /></td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Grade" name="memberName" ng-model="Facilitatorgrade" ng-disabled="true" />
+                                    <input type="text" style="display:none; " class="form-control" placeholder="Grade" name="memberName" id="facilitatorFunctionCode" ng-model="FacilitatorFunctionCode" ng-disabled="true" />
+                                </td>
+                                <td>
+                                    <input type="file" class="profilePicUpload" id="Facilitatorfile" style="margin-left: 35px;" ng-blur="encodeImageFileAsURL();" />
+                                    <img src="~/Img/avatar.jpg" style="width:25px;height:25px;margin-left: 15px;" id="image_upload_preview" />
+                                    <img src="~/Img/check-circle.gif" class="sucessalert" id="sucessalert" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;line-height:25px;font-weight:bold;">Team Leader :- </td>
+                                <td><input type="number" class="form-control" placeholder="Employee Code" name="memberName" min="0" ng-model="TLempCode" ng-blur="TL()" ng-required="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Employee Name" name="memberName" ng-model="TLempName" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Department" name="memberName" ng-model="TLdepartment" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Grade" name="memberName" ng-model="TLgrade" ng-disabled="true" /></td>
+                                <td>
+                                    <input type="file" class="profilePicUpload" id="TLfile" style="margin-left: 35px;" ng-blur="TLencodeImageFileAsURL();" />
+                                    <img src="~/Img/avatar.jpg" typeof="img" style="width:25px;height:25px;margin-left: 15px;" id="image_upload_preview_1" />
+                                    <img src="~/Img/check-circle.gif" class="sucessalert" id="sucessalert_1" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;line-height:25px;font-weight:bold;">Team Member :- </td>
+                                <td><input type="number" class="form-control" placeholder="Employee Code" name="memberName" min="0" ng-model="TM1empCode" ng-blur="TM1()" ng-required="true" /><span style="font-size: 14px;color: red;font-weight: bold;text-align: left;">{{testmsg1}}</span></td>
+                                <td><input type="text" class="form-control" placeholder="Employee Name" name="memberName" ng-model="TM1empName" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Department" name="memberName" ng-model="TM1department" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Grade" name="memberName" ng-model="TM1grade" ng-disabled="true" /></td>
+                                <td>
+                                    <input type="file" class="profilePicUpload" id="TM1file" style="margin-left: 35px;" ng-blur="TM1encodeImageFileAsURL();" />
+                                    <img src="~/Img/avatar.jpg" style="width:25px;height:25px;margin-left: 15px;" id="image_upload_preview_2" />
+                                    <img src="~/Img/check-circle.gif" class="sucessalert" id="sucessalert_2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;line-height:25px;font-weight:bold;">Team Member :- </td>
+                                <td>
+                                    <input type="number" class="form-control" placeholder="Employee Code" name="memberName" min="0" ng-model="TM2empCode" ng-blur="TM2()" ng-required="true" /><span style="font-size: 14px;color: red;font-weight: bold;text-align: left;">{{testmsg2}}</span>
+                                </td>
+                                <td><input type="text" class="form-control" placeholder="Employee Name" name="memberName" ng-model="TM2empName" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Department" name="memberName" ng-model="TM2department" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Grade" name="memberName" ng-model="TM2grade" ng-disabled="true" /></td>
+                                <td>
+                                    <input type="file" class="profilePicUpload" id="TM2file" style="margin-left: 35px;" ng-blur="TM2encodeImageFileAsURL();" />
+                                    <img src="~/Img/avatar.jpg" style="width:25px;height:25px;margin-left: 15px;" id="image_upload_preview_3" />
+                                    <img src="~/Img/check-circle.gif" class="sucessalert" id="sucessalert_3" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;line-height:25px;font-weight:bold;">Team Member :- </td>
+                                <td><input type="number" class="form-control" placeholder="Employee Code" name="memberName" min="0" ng-model="TM3empCode" ng-blur="TM3()" /><span style="font-size: 14px;color: red;font-weight: bold;text-align: left;">{{testmsg3}}</span></td>
+                                <td><input type="text" class="form-control" placeholder="Employee Name" name="memberName" ng-model="TM3empName" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Department" name="memberName" ng-model="TM3department" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Grade" name="memberName" ng-model="TM3grade" ng-disabled="true" /></td>
+                                <td>
+                                    <input type="file" class="profilePicUpload" id="TM3file" style="margin-left: 35px;" ng-blur="TM3encodeImageFileAsURL();" />
+                                    <img src="~/Img/avatar.jpg" style="width:25px;height:25px;margin-left: 15px;" id="image_upload_preview_4" />
+                                    <img src="~/Img/check-circle.gif" class="sucessalert" id="sucessalert_4" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;line-height:25px;font-weight:bold;">Team Member :- </td>
+                                <td><input type="number" class="form-control" placeholder="Employee Code" name="memberName" min="0" ng-model="TM4empCode" ng-blur="TM4()" /><span style="font-size: 14px;color: red;font-weight: bold;text-align: left;">{{testmsg4}}</span></td>
+                                <td><input type="text" class="form-control" placeholder="Employee Name" name="memberName" ng-model="TM4empName" ng-disabled="true" /></td>
+
+                                <td><input type="text" class="form-control" placeholder="Department" name="memberName" ng-model="TM4department" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Grade" name="memberName" ng-model="TM4grade" ng-disabled="true" /></td>
+                                <td>
+                                    <input type="file" class="profilePicUpload" id="TM4file" style="margin-left: 35px;" ng-blur="TM4encodeImageFileAsURL();" />
+                                    <img src="~/Img/avatar.jpg" style="width:25px;height:25px;margin-left: 15px;" id="image_upload_preview_5" />
+                                    <img src="~/Img/check-circle.gif" class="sucessalert" id="sucessalert_5" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;line-height:25px;font-weight:bold;">Level1 :- </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Employee Code" name="memberName" min="0" ng-disabled="true" ng-model="L1empCode" ng-required="true" />
+                                </td>
+                                <td><input type="text" class="form-control" placeholder="Employee Name" name="memberName" ng-model="L1empName" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Department" name="memberName" ng-model="L1department" ng-disabled="true" /></td>
+                                <td><input type="text" class="form-control" placeholder="Grade" name="memberName" ng-model="L1grade" ng-disabled="true" /></td>
+                                <td>
+                                    <input type="file" class="profilePicUpload" id="L1file" style="margin-left: 35px;" ng-blur="L1encodeImageFileAsURL();" />
+                                    <img src="~/Img/avatar.jpg" style="width:25px;height:25px;margin-left: 15px;" id="image_upload_preview_6" />
+                                    <img src="~/Img/check-circle.gif" class="sucessalert" id="sucessalert_6" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </form>
+                </table>
+                <div style="text-align:center;" id="submitbtn"><button class="btn btn-info" style="margin:auto;font-size:12px;font-weight:bold;" ng-click="myform.$valid &&Submit()" ng-hide="btnSubmit">Submit</button></div>
+                <div class="text-center" style="margin:auto;margin-top:1%;margin-bottom:2%;"><span style="color:green;font-weight: bold; font-size:12px;">{{StatusMessage}}</span></div>
+            </div>
+
+        </div>
+        <script src="~/Scripts/angular.js"></script>
+        <script src="~/Scripts/JsControllers/TeamRegistrationController.js"></script>
+    </div>
+</div>

@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = "Reports";
+}
+<link href="~/Content/zebra_datepicker.css" rel="stylesheet" />
+<div ng-controller="ReportsController">
+    <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+    <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+    <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+    <style>
+        .nav > li {
+            transition: all .7s;
+            border-radius: 5px;
+            width: 153px;
+            text-align: center;
+            padding: 0.2%;
+            color: #fff;
+        }
+
+        .inputaddvalues {
+            width: 100%;
+            height: 30px;
+            margin-top: 4px;
+            font-size: 13px;
+        }
+
+        .Zebra_DatePicker_Icon {
+            right: 25px;
+        }
+    </style>
+    <form name="myform">
+        <header>
+            <nav class="navbar " style="padding:1%;padding-bottom:0px;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                    </div>
+                    <ul class="nav">
+                        <li class="activeL Reports HeaderHide" style="background: rgba(0, 123, 194,1);"><a href="/QCC.Web/Reports/Reports" style="color:#fff;">Reports</a></li>
+                        <li class="Profile HeaderHide"><a href="/QCC.Web/Profile/Profile">Profile</a></li>
+                        <li class="Home HeaderHide"><a href="/QCC.Web/Home/dashboard">Home</a></li>
+
+                    </ul>
+                    <div style="width: 20%;">
+                        <div class="userDetailsLeft">
+                            <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                            @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                            <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                            <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                        </div>
+                        <div class="userDetailsRight">
+                            <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container container-fluid mt-3" style="padding:0px;">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <b><label class="float-left w-25" style="line-height: 35px;font-size: 12px;font-weight:400;">COMPANY : </label></b>
+                    <select ng-model="selectedcompanyvalue" class="form-control float-left inputaddvalues w-50">
+                        <option value="">--SELECT COMPANY--</option>
+                        <option ng-repeat="sel in Company" ng-selected="selectedcompanyvalue == sel.Name" value="{{sel.Name}}">{{sel.Name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <b><label class="w-25 float-left" style="line-height: 35px;font-size: 12px;font-weight:400;">PLANT : </label></b>
+                    <select ng-model="selectedplantvalue" class="form-control float-left inputaddvalues w-50">
+                        <option value="">--SELECT PLANT--</option>
+                        <option ng-repeat="sel in Plant" ng-selected="selectedplantvalue == sel.Name" value="{{sel.Name}}">{{sel.Name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div><b><label class="float-left w-25" style="line-height: 35px;font-size: 12px;font-weight:400;">START DATE: </label></b></div>
+                    <div>
+                        <input id="datepicker-range-start1" autocomplete="off" type="text" class="form-control float-left inputaddvalues w-75" data-zdp_readonly_element="false" placeholder="Select Year-From">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <b><label class="w-25 float-left" style="line-height: 35px;font-size: 12px;font-weight:400;">BUSINESSUNIT : </label></b>
+                    <select ng-model="selectedbusinessvalue" class="form-control float-left inputaddvalues w-50">
+                        <option value="">--SELECT BUSINESSUNIt--</option>
+                        <option ng-repeat="sel in BusinessUnit" ng-selected="selectedbusinessvalue == sel.Name" value="{{sel.Name}}">{{sel.Name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <b><label class="w-25 float-left" style="line-height: 35px;font-size: 12px;font-weight:400;">DEPARTMENT : </label></b>
+                    <select ng-model="selecteddepartmentvalue" class="form-control float-left inputaddvalues w-50">
+                        <option value="">--SELECT DEPARTMENT--</option>
+                        <option ng-repeat="sel in Department" ng-selected="selecteddepartmentvalue == sel.Name" value="{{sel.Name}}">{{sel.Name}}</option>
+                    </select>
+
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div><b><label class="float-left w-25" style="line-height: 35px;font-size: 12px;font-weight:400;">END DATE : </label></b></div>
+                    <input id="datepicker-range-end1" autocomplete="off" type="text" class="form-control float-left inputaddvalues w-75" data-zdp_readonly_element="false" placeholder="Select Year-To">
+                </div>
+            </div>
+            <div>
+                <div style="margin:1% 45%;">
+                    <button type="submit" style="width: 120px;font-size:12px;" class="btn btn-info" ng-click="ReportsSearch()">EXECUTE</button>
+                </div>
+                <button class="btn btn-info" ng-click="exportToExcel('#tblCustomers')" style="font-size: 14px;margin-bottom:5px;">
+                    <span class="glyphicon glyphicon-share"></span>
+                    Export to Excel
+                </button>
+                <button class="btn btn-info" ng-click="export()" style="font-size: 14px;margin-bottom:5px;"> <span class="glyphicon glyphicon-share"></span>PDF</button>              
+<a href="/QCC.Web/Reports/Graphs"><img src="~/Img/chart_graph.png"  style="width:40px;float:right;"/></a>
+                <table class="table table-bordered" style="border:0px solid #000;font-size: 14px;" id="tblCustomers">
+                    <thead class="bg-info" style="color:#fff;">
+                        <tr>
+                            <th>SL.NO</th>
+                            <th>Company</th>
+                            <th>BusinessUnit</th>
+                            <th>Plant</th>
+                            <th>Department</th>
+                            <th>QC Name</th>
+                            <th>Project Title</th>
+                            <th>Facilitator Name</th>
+                            <th>Team Count</th>
+                            <th>No.of Projects</th>
+                            <th>Cost Saving</th>
+                            <th>Team Status</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="Reports in ReportsResponse">
+                            <th scope="row">
+                                {{$index +1}}
+                            </th>
+                            <td>
+                                {{Reports.Company}}
+                            </td>
+                            <td>
+                                {{Reports.BusinessUnit}}
+                            </td>
+                            <td>
+                                {{Reports.Plant}}
+                            </td>
+                            <td>
+                                {{Reports.Department}}
+                            </td>
+                            <td>
+                                {{Reports.QCName}}
+                            </td>
+                            <td>
+                                {{Reports.ProjectTitle}}
+                            </td>
+                            <td>
+                                {{Reports.FacilitatorName}}
+                            </td>
+                            <td>
+                                {{Reports.TeamCount}}
+                            </td>
+                            <td>
+                                {{Reports.NoOfProjects}}
+                            </td>
+                            <td>
+                                {{Reports.CostSaving}}
+                            </td>
+                            <td ng-hide="true">
+                                {{Reports.TeamStatus}}
+                            </td>
+                            <td>
+                                {{Reports.StatusName}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="~/Scripts/zebra_datepicker.min.js"></script>
+        <script src="~/Scripts/angular.js"></script>
+        <script src="~/Scripts/pdfmake.min.js"></script>
+        <script src="~/Scripts/html2canvas.min.js"></script>
+        <script src="~/Scripts/JsControllers/ReportsController.js"></script>
+        <script src="~/Scripts/dirPagination.js"></script>
+
+    </form>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $j = jQuery.noConflict();
+            $('#datepicker-range-start1').Zebra_DatePicker({
+                //pair: $('#datepicker-range-end')
+                format: 'd-m-Y',
+                pair: $('#datepicker-range-end1')
+            });
+
+            $('#datepicker-range-end1').Zebra_DatePicker({
+                format: 'd-m-Y'
+            });
+            $(".Zebra_DatePicker_Icon").css({ "right": "75px", "top": "10px" });
+        });
+    </script>
+
+
+</div>

@@ -1,0 +1,104 @@
+﻿
+<input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+<input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+<input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+<style>
+    .BottomMenuIcons {
+    font-size:14px
+    }
+    .guidelinespdf {
+        display:none;
+    }
+</style>
+<header>
+    <nav class="navbar " style=" padding-bottom: 5px; ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+            </div>
+            <div class="nav" style="">
+                <ul class="nav">
+                    <li class="Home HeaderHide"><a href="/AReQCC/Home/dashboard">Home</a></li>
+                </ul>
+            </div>
+            @*<div id="notificaicon">Status</div>
+                <div style="width:21%;height:40px;" id="notifiList"></div>*@
+            <div style="width: 20%;" id="rightSideMenu">
+
+                <div class="userDetailsLeft">
+                    <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                    @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                    <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                    <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                </div>
+                <div class="userDetailsRight">
+                    <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                </div>
+            </div>
+            @*<button class="btn btn-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;" ng-click="logout()"><img src="~/Img/logout.png" style="width: 18px;margin-right: 5px;" />Logout</button>*@
+        </div>
+    </nav>
+</header>
+<ul>
+    @*<li style="width:27%;">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <a href="~/Img/docs/CCQC_2021 brochure.pdf" target="_blank" class="btn btn-outline-info" style="font-size: 2rem;font-weight: bold;margin: 1rem;border-radius: 6px;width:90%">CCQC 2021 brochure</a>
+        </li>
+        <li style="width:27%;">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <a href="~/Img/docs/ICQCC Brochure.pdf" target="_blank" class="btn btn-outline-primary" style="font-size: 2rem;font-weight: bold;margin: 1rem;border-radius: 6px;width:90%">ICQCC Brochure</a>
+        </li>*@
+</ul>
+<embed src="~/Img/docs/Internal convention guidelines.pdf" style="width: 80vw;margin: 0% 9%;height: 85vh; display:block;" type="application/pdf" class="internal guidelinespdf">
+<embed src="~/Img/docs/Internal convention guidelines.pdf" style="width: 80vw;margin: 0% 9%;height: 85vh;" type="application/pdf" class="chapter guidelinespdf">
+<embed src="~/Img/docs/Internal convention guidelines.pdf" style="width: 80vw;margin: 0% 9%;height: 85vh;" type="application/pdf" class="national guidelinespdf">
+<embed src="~/Img/docs/ICQCC screening guidelines.pdf" style="width: 80vw;margin: 0% 9%;height: 85vh;" type="application/pdf" class="icqcc guidelinespdf">
+<embed src="~/Img/docs/Internal convention guidelines.pdf" style="width: 80vw;margin: 0% 9%;height: 85vh;" type="application/pdf" class="interNational guidelinespdf">
+
+<div class="container mb-1" style="position: fixed;bottom: 0;z-index: 999999999;left: 9rem;">
+    <div style="margin-top:0%;margin-bottom:2%;">
+        <div class="BottomMenuIconsMain internalbtn" style="width: 20%;">
+            <button class="btn btn-info BottomMenuIcons Internal_conventions" onClick="CheckGuidepdf('internal')">Internal conventions</button>
+            <div class="BottomMenuIconsPopUp">
+                Hello World
+            </div>
+        </div>
+
+        <div class="BottomMenuIconsMain chapterbtn" style="width: 20%;">
+            <button class="btn btn-danger BottomMenuIcons Chapter_conventions" onClick="CheckGuidepdf('chapter')">Chapter conventions</button>
+            <div class="BottomMenuIconsPopUp">
+                Hello World
+            </div>
+        </div>
+        <div class="BottomMenuIconsMain nationbtn" style="width: 20%;">
+            <button class="btn btn-primary BottomMenuIcons National_conventions" onClick="CheckGuidepdf('national')">National conventions</button>
+            <div class="BottomMenuIconsPopUp">
+                Hello World
+            </div>
+        </div>
+        <div class="BottomMenuIconsMain icqccbtn" style="width: 20%;">
+            <button class="btn btn-warning BottomMenuIcons ICQCC_conventions" onClick="CheckGuidepdf('icqcc')">ICQCC Internal Screening</button>
+            <div class="BottomMenuIconsPopUp">
+                Hello World
+            </div>
+        </div>
+        <div class="BottomMenuIconsMain internationalbtn" style="width: 20%;">
+            <button class="btn btn-success BottomMenuIcons Inter_National_conventions" onClick="CheckGuidepdf('interNational')">International  conventions</button>
+            <div class="BottomMenuIconsPopUp">
+                Hello World
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<embed src="~/Img/docs/Document.pdf" style="width: 80vw;margin: 0% 9%;height: 95vh;" type="application/pdf">*@
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/JsControllers/DashboardController.js"></script>
+<script>
+    function CheckGuidepdf(name) {
+      //  alert(name);
+        $(".guidelinespdf").hide();
+        $("." + name).show();
+    }
+</script>
+

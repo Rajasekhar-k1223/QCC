@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace QCC.Web.Models.Request
+{
+    public class ProjectSelectionSheetRequest
+    {
+        public int TeamId { get; set; }
+        public string Title { get; set; }
+        public string Objective { get; set; }
+        public string Goal { get; set; }
+        public string ProjectStartDate { get; set; }
+        public string ProjectEndDate { get; set; }
+        public string ExpectedCostSaving { get; set; }
+        public string Status { get; set; }
+        public string TeamStatus { get; set; }
+        public string Level1 { get; set; }
+        public string Level2 { get; set; }
+        public string Level3 { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
+        public string ActualGoal { get; set; }
+        public string ActualProjectStartDate { get; set; }
+        public string ActualProjectEndDate { get; set; }
+        public string ActualExpectedCostSaving { get; set; }
+        public string Remarks { get; set; }
+
+        public string GoalTo { get; set; }
+        public string GoalUOM { get; set; }
+        public string GoalToUOM { get; set; }
+    }
+}

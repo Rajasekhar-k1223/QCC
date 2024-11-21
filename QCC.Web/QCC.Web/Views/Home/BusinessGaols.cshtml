@@ -1,0 +1,272 @@
+﻿
+@{
+    ViewBag.Title = "BusinessGoals";
+}
+<script>
+    $(function () {
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image_upload_preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#inputFile").change(function () {
+            readURL(this);
+        });
+        $(".dropdown").hover(
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            },
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            });
+    });
+    function showDetails() {
+        var taleshowaa = '<div><h3 style="width:96%;text-align:center;float:left;">Team Details</h3><div style="font-weight:bold;font-size:16px;padding:0.5%;float:left;cursor:pointer;" onclick="javascript:return Close();" id="close">X</div><div style="clear:both"></div></div><table class="table"><thead></thead><tbody><tr><td>Facilitator</td><td>Rajasekhar</td><td>415268</td><td>CL & Lean</td><td>M05</td></tr><tr><td>Team Leader</td><td>Revathi</td><td>517583</td><td>CL & Lean</td><td>M04</td></tr><tr><td>Team Member</td><td>Sudha</td><td>785293</td><td>MNT</td><td>M04</td></tr><tr><td>Team Member</td><td>barghav</td><td>814298</td><td>Production</td><td>M05</td></tr><tr><td>Team Member</td><td>Sekhar</td><td>453298</td><td>Production</td><td>M05</td></tr><tr><td>Team Member</td><td>Lalitha</td><td>658392</td><td>QA</td><td>M04</td></tr></tbody></table><div style="text-align:center"><textarea style="width: 35%; height: 53px;margin: 1% 10% 1% 1%;border:1px solid #000;border-radius:5px;padding-left:5px;color:red;" placeholder="The Facilitor is not trained" value="The Facilitor is not trained" id="textareavalue"> Facilitator is not trained</textarea></div>';
+        $(".body_blur").show();
+        $(".showtableList").show().html(taleshowaa);
+
+    }
+    function Close() {
+        $(".showtableList,.body_blur").hide();
+    }
+</script>
+<style>
+    .inputaddvalues {
+        width: 100%;
+        height: 30px;
+        margin-top: 4px;
+        font-size: 13px;
+    }
+</style>
+<link href="~/Content/zebra_datepicker.css" rel="stylesheet" />
+<div ng-controller="HomeController">
+    <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+    <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+    <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+    <header>
+        <nav class="navbar " style="padding:1%;padding-bottom:0px;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                </div>
+                <ul class="nav">
+                    <li class="activeL Business_Goals HeaderHide" style="background: rgba(0, 123, 194,1);"><a href="/QCC.Web/Home/BusinessGaols" style="color:#fff;" class="">Business Goals</a></li>
+
+                    <li class=" Home HeaderHide"><a href="/QCC.Web/Home/dashboard">Home</a></li>
+
+                </ul>
+                <div style="width: 20%;">
+                    <div class="userDetailsLeft">
+                        <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                        <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                    </div>
+                    <div class="userDetailsRight">
+                        <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <form name="myform">
+        <div class="container container-fluid mt-3" style="padding:0px;">
+            <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+            <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+            <h3 class="text-center">Business Goals</h3>
+            <div class="row" style="margin:0px;padding:0px;">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">BUSINESS UNIT</span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="text" name="" id="bussinessUnit" ng-model="BusinessUnit" ng-disabled="true" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            PLANT
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+    @*<select ng-model="selectedItemvalue" class="form-control float-left inputaddvalues" ng-change="onChange()" ng-required="true">
+            <option value="">--Select Plant --</option>
+            <option ng-repeat="sel in PlantRegister" ng-selected="selectedItemvalue == sel.Id" value="{{sel.Id}}">{{sel.Plant}}</option>
+        </select>*@
+    <input class="form-control float-left inputaddvalues" type="text" name="" ng-model="Plant" ng-disabled="true" ng-required="true" />
+    <input class="form-control float-left inputaddvalues" type="hidden" name="" ng-model="Company" ng-disabled="true" ng-required="true" />
+</span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            SELECT YEAR
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" id="datepicker-example11" ng-model="Year1" type="number" name="" ng-required="true" />
+                            <input class="form-control float-left inputaddvalues" id="datepicker-example12" ng-model="Year2" type="number" name="" ng-required="true" disabled/>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            EMPLOYEES HEAD COUNT
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="EmployeeHeadCount" ng-model="BusinessGoals.EmployeeHeadCount" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            ELIGIBLE HEAD COUNT
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="EligibleHeadCount" ng-model="BusinessGoals.EligibleHeadCount" ng-animate="" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            NO.OF QC.TARGET
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="NoofqcTarget" ng-model="BusinessGoals.NoofqcTarget" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            NO.OF FACILITATORS
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="NoofFacilitators" ng-model="BusinessGoals.NoofFacilitators" ng-blur="CirclePerFacilitator()" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            CIRCLES PER FACILITOR
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="CirclesperFacilitator" ng-model="BusinessGoals.CirclesperFacilitator" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            NO.OF OLD CIRCLES
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="NoOfOldCircles" ng-model="BusinessGoals.NoOfOldCircles" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            NO.OF NEW CIRCLES
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="NoofNewCircles" ng-model="BusinessGoals.NoofNewCircles" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            PROJECTS TARGET
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="ProjectsTarget" ng-model="BusinessGoals.ProjectsTarget" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            CIRCLES YTD
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="CirclesYTD" ng-model="BusinessGoals.CirclesYTD" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            PROJECTS YTD
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="ProjectsYTD" ng-model="BusinessGoals.ProjectsYTD" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            TEI TARGET %
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="TEITarget" ng-model="BusinessGoals.TEITarget" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            TEI YTD %
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" id="TEIYTD" ng-model="BusinessGoals.TEIYTD" min="0" ng-required="true" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin:auto;margin-top:4%;"><button class="btn btn-info m-1 Level2Button" ng-click="Save()" id="btntxt" type="submit" style="font-size:12px;width:120px;font-weight: 700;">Save Goals</button></div>
+            <div class="text-center" style="margin:auto;margin-top:4%;"><span style="color:green;font-weight: 700;">{{StatusMessage}}</span></div>
+            <div class="text-center" style="margin:auto;margin-top:4%;">
+                <button ng-click="TeamRegistration()" class=" btn btn-info m-1" style="width:180px;font-weight: 700;font-size:12px;">Team Registration</button>
+                <button class=" btn btn-info m-1" style="width:180px;font-weight: 700;font-size:12px;" ng-click="ProjectExecution()">Projects Execution</button><button class=" btn btn-info m-1" style="width:120px;font-weight: 700;font-size:12px;" ng-click="Reports()">Reports</button>
+            </div>
+
+        </div>
+        <script src="~/Scripts/angular.min.js"></script>
+        <script src="~/Scripts/JsControllers/BusinesGoalsController.js"></script>
+        <script src="~/Scripts/dirPagination.js"></script>
+        <script src="~/Scripts/zebra_datepicker.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var EmpCode = $("#myHiddenempCode").val();
+                $('#datepicker-example11').Zebra_DatePicker({
+                    onSelect: function (i) { $("#datepicker-example12").val(parseInt(i) + 1); var SelectYear = i + '-' + (parseInt(i) + 1); fetchdetailsbGoals(EmpCode, SelectYear); },
+                    format: 'Y'   //  note that because there's no day in the format
+                    //  users will not be able to select a day!
+                });
+                $(".Zebra_DatePicker_Icon").css({ "top": "11px", "right": "5px" });
+                $("#datepicker-example11").css({ "padding-right": "20px" });
+                $(".Zebra_DatePicker_Icon_Wrapper").css({ "width": "50%" });
+                $("#datepicker-example12").css({ "width": "47%", "margin-left": "3%" });
+                //alert($("#datepicker-example11").val());
+            });
+
+        </script>
+    </form>
+</div>
+<div style="width:600px;display:none;">
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+</div>
+<div style="width:600px;display:none;">
+    <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+</div>
+<div style="width:600px;display:none;">
+    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+</div>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+    <script src="~/Scripts/polyfill.js"></script>
+    <script src="~/Scripts/ej2.min.js"></script>
+    <title>@ViewBag.Title - QCC</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+</head>
+<body ng-app="QCC">
+    <script>
+    //    alert($(window).width());
+      //  alert($(window).zoom());
+    //session end
+    var sessionTimeoutWarning = @Session.Timeout- 1;
+
+    var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
+    setTimeout('SessionEnd()', sTimeout);
+
+    function SessionEnd() {
+        window.location = "/Home/Index";
+    }
+    </script>
+    @*<div class="container body-content">*@
+    @RenderBody()
+    @*</div>*@
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/angular")*@
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/RolesList")
+    @Scripts.Render("~/bundles/ui-bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

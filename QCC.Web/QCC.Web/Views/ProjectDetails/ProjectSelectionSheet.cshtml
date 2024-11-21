@@ -1,0 +1,441 @@
+﻿@{
+    ViewBag.Title = "Project Selection Sheet";
+}
+<script>
+    $(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image_upload_preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#inputFile").change(function () {
+            readURL(this);
+        });
+        $(".dropdown").hover(
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            },
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            });
+        
+
+    });
+    function showDetails() {
+        var taleshowaa = '<div><h3 style="width:96%;text-align:center;float:left;">Team Details</h3><div style="font-weight:bold;font-size:16px;padding:0.5%;float:left;cursor:pointer;" onclick="javascript:return Close();" id="close">X</div><div style="clear:both"></div></div><table class="table"><thead></thead><tbody><tr><td>Facilitator</td><td>Rajasekhar</td><td>415268</td><td>CL & Lean</td><td>M05</td></tr><tr><td>Team Leader</td><td>Revathi</td><td>517583</td><td>CL & Lean</td><td>M04</td></tr><tr><td>Team Member</td><td>Sudha</td><td>785293</td><td>MNT</td><td>M04</td></tr><tr><td>Team Member</td><td>barghav</td><td>814298</td><td>Production</td><td>M05</td></tr><tr><td>Team Member</td><td>Sekhar</td><td>453298</td><td>Production</td><td>M05</td></tr><tr><td>Team Member</td><td>Lalitha</td><td>658392</td><td>QA</td><td>M04</td></tr></tbody></table><div style="text-align:center"><button class="btn btn-success" style="margin: 2% 10% 1% 37%;font-size:12px;font-weight:bold;float:left;">Approved</button><button class="btn btn-danger" style="font-size:12px;font-weight:bold;float:left;margin: 2% 2% 1% 1%;">Reject</button><textarea style="width: 190px; height: 53px;margin: 1% 10% 1% 1%;border:1px solid #000;border-radius:5px;padding-left:5px;" placeholder="Enter Remarks"></textarea></div>';
+        $(".body_blur").show();
+        $("#ApprovedView").show();
+
+    }
+    function Close() {
+        $(".showtableList,.body_blur").hide();
+    }
+</script>
+<div ng-controller="ProjectDetailsController">
+    <style>
+
+
+        .nav > li {
+            transition: all .7s;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+            padding: 0.2%;
+            color: #fff;
+        }
+
+        .inputaddvalues {
+            width: 100%;
+            height: 30px;
+            margin-top: 4px;
+            font-size: 13px;
+        }
+    </style>
+    <header>
+        <nav class="navbar " style="padding:1%;padding-bottom:0px;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                </div>
+                <ul class="nav" >
+
+
+                    <li class="activeL Project_Selection_Sheet HeaderHide" style="background: rgba(0, 123, 194,1);"><a href="/QCC.Web/ProjectDetails/ProjectSelectionSheet" style="color:#fff;;" class="">Project Selection Sheet <sup style="background:yellow;color:red;font-weight:bold;"></sup></a></li>
+                    <li class="Pending_For_Approval HeaderHide"><a href="/QCC.Web/ProjectDetails/PendingForApproval">Pending For Approval <sup style="background:yellow;color:red;font-weight:bold;"></sup></a></li>
+                    <li class="Project_Closure HeaderHide"><a href="/QCC.Web/ProjectDetails/ProjectClosure">Project Closure</a></li>
+                    <li class="Home HeaderHide"><a href="/QCC.Web/Home/dashboard">Home</a></li>
+                </ul>
+                <div style="width: 20%;">
+                    <div class="userDetailsLeft">
+                        <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                        <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                    </div>
+                    <div class="userDetailsRight">
+                        <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+        <input type="hidden" value="@Session["empMailId"]" id="myHiddenempMailId" />
+        <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+        <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+            </div>
+            <div class="form-group">
+
+                <input type="text" ng-model="search" class="form-control" placeholder="Search" style="font-size: 1.4rem;">
+            </div>
+
+            <table class="table table-striped table-bordered table-hover tabel-condensed">
+                <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                    <tr>
+                        <th>Id</th>
+                        <th>Company</th>
+                        <th>Business Unit</th>
+                        <th>Plant</th>
+                        <th>Team Name</th>
+                        <th>Team Strength</th>
+                        <th>Status</th>
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="Approved in ApprovedResponse | filter:search">
+                        <th scope="row">
+                            {{$index + 1}}
+                        </th>
+                        <th ng-hide="true">
+                            {{Approved.Id}}
+                        </th>
+                        <td>
+                            {{Approved.Company}}
+                        </td>
+                        <td>
+                            {{Approved.BusinessUnit}}
+                        </td>
+                        <td>
+                            {{Approved.Plant}}
+                        </td>
+                        <td>
+                            {{Approved.TeamName}}
+                            <img src="~/Img/info-icon.png" ng-click="toggleImageEdit(Approved)" sytle="width:16px;height:16px" />
+                        </td>
+                        <td ng-hide="true">
+                            {{Approved.Status}}
+                        </td>
+                        <td>
+                            {{Approved.TeamStrength}}
+                        </td>
+                        <td>
+                            {{Approved.StatusName}}
+                        </td>
+                        <td style="text-align:center">
+                            <span ng-click="toggleEdit(Approved)" class="glyphicon glyphicon-pencil"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td align="center" colspan="8">
+                            <div class="pull-right">
+                                <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages" style="margin-right:30px;float:left;"></pagination>
+                                <a class="btn btn-primary" style="margin: 6.5% 0%;color:#fff;background-color: #337ab7;border-color: #2e6da4;">Page: {{pageIndex}} / {{numPages}}</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+    <form name="myform">
+        <div id="ProjectSelectionSheetView">
+            <div style="font-weight:bold;font-size:16px;padding:0.5%;float:right;cursor:pointer;" ng-click="Close();" id="close">X</div>
+            <div style="clear:both"></div>
+            <div class="col-sm-12 col-md-6 col-lg-6" style="margin:1% 25%;">
+                <div class="form-group m-2">
+                    <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                        TITLE OF THE QCC  CASE STUDY
+                    </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                        <input class="form-control float-left inputaddvalues" type="text" name="" ng-model="Title" ng-required="true" />
+                    </span>
+                </div>
+
+                <div class="form-group m-2">
+                    <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                        OBJECTIVE
+                    </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                        <input class="form-control float-left inputaddvalues" type="text" name="" ng-model="Objective" ng-required="true" />
+                    </span>
+                </div>
+                <div ng-hide="ProjectInitiationSelection">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            GOAL FROM
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:10%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" min="0" ng-model="Goal" ng-required="true" />
+                            <input class="form-control float-left inputaddvalues" placeholder="UOM" type="text" name="" ng-model="GoalUOM" ng-required="true" ng-blur="GaolUOM()"/>
+
+                        </span>
+                    </div>
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            TO
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:10%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="number" name="" min="0" ng-model="GoalTo" ng-required="true" />
+                            <input class="form-control float-left inputaddvalues" type="text" placeholder="UOM" name="" ng-model="GoalToUOM" ng-disabled="true"/>
+
+                        </span>
+                    </div>
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            PROJECT START DATE
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input id="datepicker-range-start" style="width:222px" type="text" class="form-control float-left inputaddvalues" data-zdp_readonly_element="false" placeholder="Select Project Year-From" ng-required="true">
+                        </span>
+                    </div>
+
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;" ng-required="true">
+                            PROJECT END DATE
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input id="datepicker-range-end" type="text" style="width:222px" class="form-control float-left inputaddvalues" data-zdp_readonly_element="false" placeholder="Select Project Year-To">
+                        </span>
+                    </div>
+
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            ESTIMATED COST SAVING
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="text" name="" ng-model="ExpectedCostSaving" />
+                        </span>
+                    </div>
+                </div>
+                <div ng-hide="ProjectInitiation">
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            ACTUAL GOAL
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="text" name="" ng-model="ActualGoal" />
+                        </span>
+                    </div>
+
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            ACTUAL PROJECT START DATE
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input id="datepicker-range-APstart" style="width:222px" type="text" class="form-control float-left inputaddvalues" data-zdp_readonly_element="false" placeholder="Select Project Year-From">
+                        </span>
+                    </div>
+
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            ACTUAL PROJECT END DATE
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input id="datepicker-range-APend" style="width:222px" type="text" class="form-control float-left inputaddvalues" data-zdp_readonly_element="false" placeholder="Select Project Year-To">
+                        </span>
+                    </div>
+
+                    <div class="form-group m-2">
+                        <span class="w-50 float-left text-left pr-1" style="font-size:14px;line-height:35px;">
+                            ACTUAL EXPECTED COST SAVING
+                        </span><span style="float:left;width:4%;line-height:35px;">:-</span><span style="width:46%;float:left;">
+                            <input class="form-control float-left inputaddvalues" type="text" name="" ng-model="ActualExpectedCostSaving" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                <button class="btn btn-success" style="font-size:12px;font-weight:bold;" ng-click="Close();">Cancel</button>
+                <button class="btn btn-success" style="font-size:12px;font-weight:bold;" ng-click="myform.$valid &&Submit()">Submit</button>
+            </div>
+            <div class="col-sm-12 col-md-10 col-lg-10" style="margin: 1% 9%;">
+                <table class="table table-bordered">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;"></thead>
+                    <tbody>
+                        <tr ng-repeat="ProjectDetails in ProjectDetailsResponse">
+                            <th scope="row">
+                                {{$index + 1}} Project
+                            </th>
+                            <td>
+                                {{ProjectDetails.Title}}
+                            </td>
+                            <td ng-hide="true">
+                                {{ProjectDetails.Status}}
+                            </td>
+                            <td style="font-weight:bold;">
+                                {{ProjectDetails.StatusName}}
+                            </td>
+                            <td style="text-align:center" ng-show="{{ProjectDetails.Status==3}}">
+                                <span ng-click="toggleEdit1(ProjectDetails)" class="glyphicon glyphicon-pencil"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+    <div id="ApprovedView" style="width:92%;margin:4%;">
+        <h3 style="width:96%;text-align:center;float:left;margin-bottom:2%;margin-top:1%;font-weight:bold;">Team Details</h3>
+        <div style="font-weight:bold;font-size:16px;padding:0.5%;float:left;cursor:pointer;" ng-click="Close();" id="close">X</div>
+        <div style="clear:both"></div>
+        <div ng-hide="P1">Project1 : {{Project1}}</div>
+        <div ng-hide="P2">Project2 : {{Project2}}</div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12" style="padding-right:0px;">
+                <div class="row" style="margin:0px;">
+                    <div class="col-sm-12 col-md-4 col-lg-4 font-bold mb-2 pl-2">
+                        <div class="headcontent">Circle Name :</div><div class="headcontentval"> {{CircleName}}</div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 mb-2 pl-2">
+                        <div class="headcontent">Plant : </div><div class="headcontentval"> {{Plant}}</div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4 mb-2 pl-2">
+                        <div class="headcontent">BusinessUnit : </div><div class="headcontentval"> {{BusinessUnit}}</div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-sm-12 col-md-9 col-lg-9" style="padding-right:0px;">
+
+                    <div class="row" style="margin:0px;">
+                   
+                        <div class="col-sm-12 col-md-4 col-lg-4 mb-2 p-1" ng-repeat="circle in CircleResponse" ng-if="[$index+1] != '7'">
+
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '1'">Facilitator</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '2'">Team Leader</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '3'">Team Member</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '4'">Team Member</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '5'">Team Member</div>
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}" ng-if="[$index+1] == '6'">Team Member</div>
+                            <div style="border:1px solid #000;width:100%;height:92px;padding:2%;border-radius: 3px;">
+                                <div style="width:60%;float:left;height:75px;">
+                                    <div class="mr-0 headerNAmeT">{{circle.EmpCode}}</div>
+                                    <div class="mr-0 headerNAmeT">{{circle.EmpName}}</div>
+                                    <div class="mr-0 headerNAmeT">{{circle.Department}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{circle.Grade}}</div>
+                                </div>
+                                <div style="width:40%;float:left;height:75px;">
+                                    <img src="{{circle.Image}}" style="width:100%;height:100%;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3" style="padding-left:4px;">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div style="border:1px dashed #000;width:100%;height:120px;padding:2%;border-radius: 3px;margin-bottom:10px;">
+                                <p class="mr-0 headerNAmeT" style="text-indent: 5px;font-size:14px;">Approval Level </p>
+                                <div style="width:100%;float:left;">
+                                    <div class="mr-0 headerNAmeT" style="text-indent:5px;">Level-1 :- Section Head</div>
+                                    <div class="mr-0 headerNAmeT" style="text-indent:5px;">Level-2 :- CI – Head</div>
+                                    <div class="mr-0 headerNAmeT" style="text-indent:5px;">Level-3 :- HOD </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="m-0 headerNAmeT" style="text-indent: 3px;font-size:14px;" class="headerName_{{$index+1}}">Section Incharge</div>
+                            <div style="border:1px solid #000;width:100%;height:92px;padding:2%;border-radius: 3px;">
+                                <div style="width:60%;float:left;height:80px;">
+                                    <div class="mr-0 headerNAmeT">{{SectionEmpCode}}</div>
+                                    <div class="mr-0 headerNAmeT">{{SectionEmpName}}</div>
+                                    <div class="mr-0 headerNAmeT">{{SectionDepartment}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{SectionGrade}}</div>
+                                </div>
+                                <div style="width:40%;float:left;height:80px;">
+                                    <img src="{{SectionImage}}" style="width:100%;height:100%;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*ng-hide="TeamJourny"*@
+            <table border="1" align="center">
+                <tr>
+                    <th colspan="2"> InternalConventions</th>
+                    <th colspan="2">ChapterConventions</th>
+                    <th colspan="2">NationalConventions</th>
+                    <th colspan="2">InternationalConventions</th>
+                </tr>
+                <tr>
+                    <th>Score</th>
+                    <th>Awards</th>
+                    <th>Score</th>
+                    <th>Awards</th>
+                    <th>Score</th>
+                    <th>Awards</th>
+                    <th>Score</th>
+                    <th>Awards</th>
+                </tr>
+                <tr>
+                    <td>{{internalConventionScoreAndAwards[0].InternalScore}}</td>
+                    <td>{{internalConventionScoreAndAwards[0].InternalAward}}</td>
+                    <td>{{chapterConventionsScoreAndAwards[0].ChapterScore}}</td>
+                    <td>{{chapterConventionsScoreAndAwards[0].ChapterAward}}</td>
+                    <td>{{nationalConventionScoreAndAwards[0].NationalScore}}</td>
+                    <td>{{nationalConventionScoreAndAwards[0].NationalAward}}</td>
+                    <td>{{internationalConventionScoreAndAwards[0].InterNationalScore}}</td>
+                    <td>{{internationalConventionScoreAndAwards[0].InterNationalAward}}</td>
+                </tr>
+                <tr>
+                    <td>{{internalConventionScoreAndAwards[1].InternalScore}}</td>
+                    <td>{{internalConventionScoreAndAwards[1].InternalAward}}</td>
+                    <td>{{chapterConventionsScoreAndAwards[1].ChapterScore}}</td>
+                    <td>{{chapterConventionsScoreAndAwards[1].ChapterAward}}</td>
+                    <td>{{nationalConventionScoreAndAwards[1].NationalScore}}</td>
+                    <td>{{nationalConventionScoreAndAwards[1].NationalAward}}</td>
+                    <td>{{internationalConventionScoreAndAwards[1].InterNationalScore}}</td>
+                    <td>{{internationalConventionScoreAndAwards[1].InterNationalAward}}</td>
+                </tr>
+            </table>
+            <div class="col-sm-12 col-md-12 col-lg-12 text-center mt-2"><button class="btn btn-info" style="color:#fff;font-weight:bold;" ng-click="Close();">Close</button></div>
+        </div>
+    <div class="body_blur"></div>
+    <div class="showtableList">
+    </div>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/JsControllers/ProjectDetailsController.js"></script>
+    <script src="~/Scripts/zebra_datepicker.min.js"></script>
+    <link href="~/Content/zebra_datepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/dirPagination.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $j = jQuery.noConflict();
+            $('#datepicker-range-start').Zebra_DatePicker({
+                //pair: $('#datepicker-range-end')
+                format: 'd-m-Y',
+                pair: $('#datepicker-range-end')
+            });
+            $('#datepicker-range-end').Zebra_DatePicker({
+                format: 'd-m-Y'
+            });
+            $('#datepicker-range-APstart').Zebra_DatePicker({
+                //pair: $('#datepicker-range-end')
+                format: 'd-m-Y'
+
+            });
+            $('#datepicker-range-APend').Zebra_DatePicker({
+                format: 'd-m-Y'
+            });
+        });
+    </script>
+</div>

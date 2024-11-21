@@ -1,0 +1,391 @@
+﻿
+@{
+    ViewBag.Title = "Graphs";
+}
+<link href="~/Content/zebra_datepicker.css" rel="stylesheet" />
+<div ng-controller="HomeController">
+    <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+    <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+    <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+    <style>
+        .nav > li {
+            transition: all .7s;
+            border-radius: 5px;
+            width: 153px;
+            text-align: center;
+            padding: 0.2%;
+            color: #fff;
+        }
+
+        .inputaddvalues {
+            width: 100%;
+            height: 30px;
+            margin-top: 4px;
+            font-size: 13px;
+        }
+
+        .Zebra_DatePicker_Icon {
+            right: 25px;
+        }
+
+        .progress1 {
+            position: relative;
+            margin: 4px;
+            float: left;
+            text-align: center;
+            line-height: 2rem;
+            display: none;
+        }
+
+        .barOverflow { /* Wraps the rotating .bar */
+            position: relative;
+            overflow: hidden; /* Comment this line to understand the trick */
+            width: 275px;
+            height: 120px; /* Half circle (overflow) */
+            margin-bottom: -14px; /* bring the numbers up */
+        }
+
+        .bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 260px; /* full circle! */
+            border-radius: 50%;
+            box-sizing: border-box;
+            border: 32px solid #eee; /* half gray, */
+            border-bottom-color: #0bf; /* half azure */
+            border-right-color: #0bf;
+        }
+
+        .containGraph {
+            display: none;
+        }
+
+        .backgroundBlur {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: rgb(0, 0, 0,0.8);
+            position: absolute;
+            z-index: 4;
+        }
+    </style>
+    <div class="backgroundBlur"></div>
+    <svg id="ngloader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="        position: absolute;
+        margin: 13vw 45vw;
+        z-index: 5;
+        display: block;
+        shape-rendering: auto;" width="125px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+        <g transform="translate(80,50)">
+            <g transform="rotate(0)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="1">
+                    <animateTransform attributeName="transform" type="scale" begin="-1.875s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.875s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(77.7163859753386,61.48050297095269)">
+            <g transform="rotate(22.5)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.9375">
+                    <animateTransform attributeName="transform" type="scale" begin="-1.75s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.75s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(71.21320343559643,71.21320343559643)">
+            <g transform="rotate(45)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.875">
+                    <animateTransform attributeName="transform" type="scale" begin="-1.625s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.625s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(61.4805029709527,77.7163859753386)">
+            <g transform="rotate(67.5)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.8125">
+                    <animateTransform attributeName="transform" type="scale" begin="-1.5s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.5s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(50,80)">
+            <g transform="rotate(90)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.75">
+                    <animateTransform attributeName="transform" type="scale" begin="-1.375s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.375s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(38.51949702904731,77.7163859753386)">
+            <g transform="rotate(112.5)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.6875">
+                    <animateTransform attributeName="transform" type="scale" begin="-1.25s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.25s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(28.786796564403577,71.21320343559643)">
+            <g transform="rotate(135)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.625">
+                    <animateTransform attributeName="transform" type="scale" begin="-1.125s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1.125s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(22.283614024661397,61.4805029709527)">
+            <g transform="rotate(157.5)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.5625">
+                    <animateTransform attributeName="transform" type="scale" begin="-1s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-1s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(20,50.00000000000001)">
+            <g transform="rotate(180)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.5">
+                    <animateTransform attributeName="transform" type="scale" begin="-0.875s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.875s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(22.283614024661393,38.51949702904731)">
+            <g transform="rotate(202.49999999999997)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.4375">
+                    <animateTransform attributeName="transform" type="scale" begin="-0.75s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.75s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(28.78679656440357,28.786796564403577)">
+            <g transform="rotate(225)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.375">
+                    <animateTransform attributeName="transform" type="scale" begin="-0.625s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.625s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(38.51949702904729,22.283614024661404)">
+            <g transform="rotate(247.49999999999997)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.3125">
+                    <animateTransform attributeName="transform" type="scale" begin="-0.5s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.5s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(49.99999999999999,20)">
+            <g transform="rotate(270)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.25">
+                    <animateTransform attributeName="transform" type="scale" begin="-0.375s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.375s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(61.4805029709527,22.2836140246614)">
+            <g transform="rotate(292.50000000000006)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.1875">
+                    <animateTransform attributeName="transform" type="scale" begin="-0.25s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.25s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(71.21320343559643,28.78679656440357)">
+            <g transform="rotate(315)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.125">
+                    <animateTransform attributeName="transform" type="scale" begin="-0.125s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="-0.125s"></animate>
+                </circle>
+            </g>
+        </g>
+        <g transform="translate(77.7163859753386,38.51949702904729)">
+            <g transform="rotate(337.49999999999994)">
+                <circle cx="0" cy="0" r="4" fill="#fff" fill-opacity="0.0625">
+                    <animateTransform attributeName="transform" type="scale" begin="0s" values="0.6900000000000001 0.6900000000000001;1 1" keyTimes="0;1" dur="2s" repeatCount="indefinite"></animateTransform>
+                    <animate attributeName="fill-opacity" keyTimes="0;1" dur="2s" repeatCount="indefinite" values="1;0" begin="0s"></animate>
+                </circle>
+            </g>
+        </g>
+        <!-- [ldio] generated by https://loading.io/ -->
+    </svg>
+    <form name="myform">
+        <header>
+            <nav class="navbar " style="padding:1%;padding-bottom:0px;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                    </div>
+                    <ul class="nav">
+                        <li class="activeL Reports HeaderHide" style="        background: rgba(0, 123, 194,1);"><a href="/AReQCC/Reports/Reports" style="color:#fff;">Reports</a></li>
+                        <li class="Profile HeaderHide"><a href="/AReQCC/Profile/Profile">Profile</a></li>
+                        <li class="Home HeaderHide"><a href="/AReQCC/Home/dashboard">Home</a></li>
+
+                    </ul>
+                    <div style="width: 20%;">
+                        <div class="userDetailsLeft">
+                            <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                            @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                            <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                            <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                        </div>
+                        <div class="userDetailsRight">
+                            <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container container-fluid mt-3" style="padding:0px;">
+            <div class="row">
+                <h1 class="w-100 text-center mb-5">Business Goals Reports</h1>
+                <div class="col-sm-12 col-md-5 col-lg-5">
+                    <div class="float-left w-100" style="line-height: 35px;font-size: 12px;font-weight:400;"><div style="width:120px;float:left;font-size:14px;font-weight:600;">COMPANY</div><div style="float:left;">:</div><div style="width:70%;float:left;font-size:14px;font-weight:600;padding-left:4%;">{{Company}}</div></div>
+                    <div class="w-100 float-left" style="line-height: 35px;font-size: 12px;font-weight:400;"><div style="width:120px;float:left;font-size:14px;font-weight:600;">PLANT</div><div style="float:left;">:</div><div style="width:70%;float:left;font-size:14px;font-weight:600;padding-left:4%;">{{Plant}}</div></div>
+                    <div class="w-100 float-left" style="line-height: 35px;font-size: 12px;font-weight:400;">
+                        <div style="width:120px;float:left;font-size:14px;font-weight:600;">BUSINESSUNIT</div><div style="float:left;">:</div><div style="width:70%;float:left;font-size:14px;font-weight:600;padding-left:4%;" id="bussinessUnit">
+                            {{BusinessUnit}}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <b><label class="float-left" style="line-height: 35px;font-size: 14px;font-weight:600;width:200px;">DEPARTMENT : </label></b>
+                    <select class="form-control float-left inputaddvalues" id="depts" style="width:250px;" ng-model="userSelect">
+                        <option value="">--SELECT DEPARTMENT--</option>
+                        <option ng-repeat="sel in Department" ng-selected="selecteddepartmentvalue == sel.Name" value="{{sel.Name}}">{{sel.Name}}</option>
+                    </select>
+
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <b><label class="float-left" style="line-height: 35px;font-size: 14px;font-weight:600;width:200px;">YEAR : </label></b>
+                    <select class="form-control float-left inputaddvalues" id="yearsList">
+                        <option value="">--SELECT YEAR--</option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+            <div>
+                <div style="width:100%;height:40px;"></div>
+                <div style="margin:1% 45%;">
+                    <button type="submit" style="width: 120px;font-size:12px;" class="btn btn-info" ng-click="excuteGraphs();">EXECUTE</button>
+                </div>
+
+            </div>
+            <div style="width:100%;height:60px;"></div>
+            <div class="progress1 progrs1">
+                <div class="barOverflow">
+                    <div class="bar" style=" border-bottom-color: rgba(235, 99, 27, 1); /* half azure */border-right-color: rgba(235, 99, 27, 1);"></div>
+                </div>
+                <span>0</span>% <br />QC Target Circles <br /> “Vs” <br /> QC YTD Circles
+
+            </div>
+
+            <div class="progress1 progrs2">
+                <div class="barOverflow">
+                    <div class="bar" style=" border-bottom-color: rgba(164, 201, 42, 1); /* half azure */border-right-color: rgba(164, 201, 42, 1);"></div>
+                </div>
+                <span>0</span>%<br /> QC Target Projects <br />“Vs” <br />QC YTD Projects
+
+            </div>
+
+            <div class="progress1 progrs3">
+                <div class="barOverflow">
+                    <div class="bar" style=" border-bottom-color: rgba(228, 65, 145, 1); /* half azure */border-right-color: rgba(228, 65, 145, 1);"></div>
+                </div>
+                <span>0</span>% <br />QC Target TEI <br />“Vs” <br />QC YTD TEI
+
+            </div>
+
+            <div class="progress1 progrs4">
+                <div class="barOverflow">
+                    <div class="bar" style=" border-bottom-color: rgba(220, 53, 69, 1); /* half azure */border-right-color: rgba(220, 53, 69, 1);"></div>
+                </div>
+                <span>0</span>% <br />QC Target Savings <br />“Vs”<br /> QC YTD Saving
+
+            </div>
+            <div style="width:525px;float:left;margin:1%;margin-top:3%;" class="containGraph">
+                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            </div>
+            <div style="width:525px;float:left;margin:1%;margin-top:3%;" class="containGraph">
+                <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+            </div>
+            <div style="clear:both"></div>
+            <div style="width:600px;margin:2% 20%;" class="containGraph">
+                <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+            </div>
+            <div class="errortext" style="display:none;"></div>
+            <script src="~/Scripts/zebra_datepicker.min.js"></script>
+            <script src="~/Scripts/angular.js"></script>
+            <script src="~/Scripts/pdfmake.min.js"></script>
+            <script src="~/Scripts/html2canvas.min.js"></script>
+
+            <script src="~/Scripts/JsControllers/BusinesGoalsController.js"></script>
+            <script src="~/Scripts/dirPagination.js"></script>
+
+    </form>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var $j = jQuery.noConflict();
+            $('#datepicker-range-start1').Zebra_DatePicker({
+                //pair: $('#datepicker-range-end')
+                format: 'd-m-Y',
+                pair: $('#datepicker-range-end1')
+            });
+
+            $('#datepicker-range-end1').Zebra_DatePicker({
+                format: 'd-m-Y'
+            });
+            $(".Zebra_DatePicker_Icon").css({ "right": "75px", "top": "10px" });
+
+
+
+
+        });
+
+    </script>
+
+
+</div>
+<script>
+    //function excuteGraphs() {
+
+    //     var scope = angular.element($("div")).scope();
+    //     var CirclesYTD = scope.BusinessGoals.CirclesYTD;
+    //     var ProjectsYTD = scope.BusinessGoals.ProjectsYTD;
+    //     var TEITarget = scope.BusinessGoals.TEITarget;
+    //     var TEIYTD = scope.BusinessGoals.TEIYTD;
+    //         $(".progrs1 span").text(CirclesYTD);
+    //            $(".progrs2 span").text(ProjectsYTD);
+    //            $(".progrs3 span").text(TEITarget);
+    //    $(".progrs4 span").text(TEIYTD);
+    //    $(".progress1").show();
+    //            $(".progress1").each(function () {
+
+    //                var $bar = $(this).find(".bar");
+    //                var $val = $(this).find("span");
+    //                var perc = parseInt($val.text(), 10);
+
+    //                $({ p: 0 }).animate({ p: perc }, {
+    //                    duration: 3000,
+    //                    easing: "swing",
+    //                    step: function (p) {
+    //                        $bar.css({
+    //                            transform: "rotate(" + (45 + (p * 1.8)) + "deg)", // 100%=180° so: ° = % * 1.8
+    //                            // 45 is to add the needed rotation to have the green borders at the bottom
+    //                        });
+    //                        $val.text(p | 0);
+    //                    }
+    //                });
+    //            });
+    //    }
+</script>
+
+</div>
+@*<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>*@
+<script src="~/Scripts/JsControllers/canvasjs.min.js"></script>

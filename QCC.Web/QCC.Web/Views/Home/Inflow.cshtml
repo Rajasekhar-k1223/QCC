@@ -1,0 +1,205 @@
+﻿@{
+    ViewBag.Title = "Inflow";
+}
+<script>
+    $(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image_upload_preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#inputFile").change(function () {
+            readURL(this);
+        });
+        $(".dropdown").hover(
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            },
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            });
+    });
+    function showDetails() {
+        var taleshowaa = '<div><h3 style="width:96%;text-align:center;float:left;">Team Details</h3><div style="font-weight:bold;font-size:16px;padding:0.5%;float:left;cursor:pointer;" onclick="javascript:return Close();" id="close">X</div><div style="clear:both"></div></div><table class="table"><thead></thead><tbody><tr><td>Facilitator</td><td>Rajasekhar</td><td>415268</td><td>CL & Lean</td><td>M05</td></tr><tr><td>Team Leader</td><td>Revathi</td><td>517583</td><td>CL & Lean</td><td>M04</td></tr><tr><td>Team Member</td><td>Sudha</td><td>785293</td><td>MNT</td><td>M04</td></tr><tr><td>Team Member</td><td>barghav</td><td>814298</td><td>Production</td><td>M05</td></tr><tr><td>Team Member</td><td>Sekhar</td><td>453298</td><td>Production</td><td>M05</td></tr><tr><td>Team Member</td><td>Lalitha</td><td>658392</td><td>QA</td><td>M04</td></tr></tbody></table><div style="text-align:center"><button class="btn btn-success" style="margin: 2% 10% 1% 37%;font-size:12px;font-weight:bold;float:left;">Approved</button><button class="btn btn-danger" style="font-size:12px;font-weight:bold;float:left;margin: 2% 2% 1% 1%;">Reject</button><textarea style="width: 190px; height: 53px;margin: 1% 10% 1% 1%;border:1px solid #000;border-radius:5px;padding-left:5px;" placeholder="Enter Remarks"></textarea></div>';
+        $(".body_blur").show();
+        $("#InflowView").show();
+
+    }
+    function Close() {
+        $(".showtableList,.body_blur").hide();
+    }
+</script>
+<style>
+    .nav > li > a {
+        padding: 0px;
+    }
+</style>
+<div ng-controller="HomeController">
+    <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+    <input type="hidden" value="@Session["roleId"]" id="myHiddenroleId" />
+    <input type="hidden" value="@Session["empName"]" id="myHiddenempName" />
+    <header>
+        <nav class="navbar " style="padding:1%;padding-bottom:0px;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" style="padding:0px;"><img src="~/Img/logo.png" style="width:170px;" /></a>
+                </div>
+                <ul class="nav">
+                    <li class="New HeaderHide"><a href="/QCC.Web/Home/TeamRegistration">Create New Team</a></li>
+                    <li class="activeL Inflow HeaderHide" style="background: rgba(0, 123, 194,1);"><a href="/QCC.Web/Home/Inflow" style="color:#fff;" class="">Inflow <sup style="background:yellow;color:red;font-weight:bold;">{{InflowCount}}</sup></a></li>
+                    <li class="Approved HeaderHide"><a href="/QCC.Web/Home/Approved">Approved <sup style="background:yellow;color:red;font-weight:bold;">{{ApproveCount}}</sup></a></li>
+                    <li class="Rejected HeaderHide"><a href="/QCC.Web/Home/Rejected">Rejected <sup style="background:yellow;color:red;font-weight:bold;">{{RejectCount}}</sup></a></li>
+                    <li class="Dashboard HeaderHide"><a href="#">Dashboard</a></li>
+                    <li class="Home HeaderHide"><a href="/QCC.Web/Home/dashboard">Home</a></li>
+                </ul>
+                <div style="width: 20%;">
+                    <div class="userDetailsLeft">
+                        <div id="LoginDate" style="font-size: 12px;width: 200px;padding: 0% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        @*<img src="~/Img/avatar.jpg" style="width:35px;height:35px;" />*@
+                        <div id="empcode" style="font-size: 12px;min-width: 200px;max-width: fit-content;margin-top:2px; padding: 1% 0%;border-radius: 3px;text-align:right;font-weight: bold;"></div>
+                        <div class="text-primary" style="font-size:12px;font-weight:bold;margin-bottom: 15px;text-align:right;cursor:pointer;width:200px;text-decoration-line:underline;" ng-click="logout()">Sign Out</div>
+                    </div>
+                    <div class="userDetailsRight">
+                        <img src="~/Img/avatar.jpg" style="width:55px;margin-top:5%;margin-left:15%;" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <input type="hidden" value="@Session["empCode"]" id="myHiddenempCode" />
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+            </div>
+            <div class="form-group">
+
+                <input type="text" ng-model="search" class="form-control" placeholder="Search" style="font-size: 1.4rem;">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover tabel-condensed">
+                    <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;">
+                        <tr>
+                            <th>Id</th>
+                            <th>Company</th>
+                            <th>BusinessUnit</th>
+                            <th>Plant</th>
+                            <th>TemName</th>
+                            <th>Team Strength</th>
+                            <th>Status</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="InFlow in InFlowResponse | filter:search">
+                            <th scope="row">
+                                {{$index + 1}}
+                            </th>
+                            <td ng-hide="true">
+                                {{InFlow.Id}}
+
+                            <td>
+                                {{InFlow.Company}}
+                            </td>
+                            <td>
+                                {{InFlow.BusinessUnit}}
+                            </td>
+                            <td>
+                                {{InFlow.Plant}}
+                            </td>
+                            <td>
+                                {{InFlow.TeamName}}
+                            </td>
+                            <td>
+                                {{InFlow.TeamStrength}}
+                            </td>
+                            <td ng-hide="true">
+                                {{InFlow.Status}}
+                            </td>
+                            <td>
+                                {{InFlow.StatusName}}
+                            </td>
+                            <td style="text-align:center">
+                                <span ng-click="toggleEdit(InFlow)" class="glyphicon glyphicon-pencil"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td align="center" colspan="8">
+                                <span class="form-group pull-left page-size form-inline">
+                                </span>
+                                <div class="pull-right">
+
+                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages" style="float: left;margin-right: 30px;"></pagination>
+                                    <a class="btn btn-primary" style="margin: 6.5% 0%;color:#fff;background-color: #337ab7;border-color: #2e6da4;">Page: {{pageIndex}} / {{numPages}}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="InflowView">
+        <h3 style="width:96%;text-align:center;float:left;">Team Details</h3>
+        <div style="font-weight:bold;font-size:16px;padding:0.5%;float:left;cursor:pointer;" ng-click="Close();" id="close">X</div>
+        <div style="clear:both"></div>
+        <table class="table table-bordered">
+            <thead class="bg-info" style="color:#fff;font-weight:bold;text-align:center;font-size:14px;"></thead>
+            <tbody>
+                <tr ng-repeat="circle in CircleResponse">
+                    <th scope="row">
+                        {{$index + 1}}
+                    </th>
+                    <td ng-hide="true">
+                        {{circle.CircleId}}
+
+                    <td>
+                        {{circle.CircleName}}
+                    </td>
+                    <td>
+                        {{circle.EmpName}}
+                    </td>
+                    <td>
+                        {{circle.EmpCode}}
+                    </td>
+                    <td>
+                        {{circle.Department}}
+                    </td>
+                    <td>
+                        {{circle.Grade}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align:center">
+            <div class="w-75 float-left text-center" style="padding-left:35%;padding-top:1%;">
+                <button class="btn btn-info mr-3" style="width:9rem;font-size:12px;font-weight:bold;float:left;" ng-click="Approved()">Approve</button>
+                <button class="btn btn-danger ml-3" style="font-size:12px;font-weight:bold;float:left;width:9rem;" ng-click="Rejected()">Reject</button>
+            </div>
+            <div class="w-25 float-left">
+                <textarea style="width: 190px; height: 53px;float:left;border:1px solid #000;border-radius:5px;padding-left:5px;" ng-model="Remarks" placeholder="Enter Remarks"></textarea>
+                <div style="clear:both;"></div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+    <div class="body_blur"></div>
+    <div class="showtableList">
+    </div>
+    <script src="~/Scripts/JsControllers/angular.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/JsControllers/InflowController.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+</div>
